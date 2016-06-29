@@ -1,0 +1,315 @@
+*-------------------------
+BOOTSRAP OVERRIDES
+----------------------------*/
+/*overrride width to collapse at*/
+@media (max-width: 1200px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+	}
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+		margin-top: 7.5px;
+	}
+	.navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+  		display:block !important;
+	}
+}
+
+/*Map Layer Options/Time Series Options Tabs*/
+#dataTab li a { 
+    #border-color: #9d9d9d;
+    border-color: #e7e7e7;
+    background-color:#ffffff;
+    #background-color:#e7e7e7;
+}
+    
+#dataTab li a:hover {
+    #border-color: #9d9d9d;
+    background-color:#e7e7e7;
+    #background-color:#ffffff;
+    #background-color:#9d9d9d;
+}
+
+#dataTab li.active a {
+    background-color:#ffffff;
+    #background-color:#e7e7e7;
+    border-color: #9d9d9d;
+    border-bottom-color: transparent;
+}
+/*Map and Figure/Data tabs*/
+#dataFigTab li a {
+    border-color: #e7e7e7;
+    background-color:#ffffff;
+    #background-color:#e7e7e7;
+}
+
+#dataFigTab li a:hover {
+    #border-color: #9d9d9d;
+    border-color:#e7e7e7;
+    background-color:#e7e7e7;
+    #background-color:#9d9d9d;
+}
+
+#dataFigTab li.active a {
+    border-color: #9d9d9d;
+    background-color:#ffffff;
+    border-bottom-color: transparent
+}
+
+/*Title at upper left of page*/
+a#droughthome {
+    font-size:30px;
+    font-size:bold;
+    color:#89cff0;
+}
+
+
+/*-------------------------
+SPECIAL WHITE PANELS
+----------------------------*/
+.panel-forms{
+    background:#E0E0E0;
+    /*background:#ababab;*/
+}
+
+/*-------------------------
+DROPDOWN MENUES
+----------------------------*/
+/* dropdown for MASK options*/
+.dropdown-mask-menu {
+  min-width:300px;
+}
+
+
+/*-------------------------
+GOOGLE LAYERS BUTTON
+----------------------------*/
+  #google-layer-control {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+        margin:5px;
+        top: 5px;
+        background-color: transparent;
+        padding: 5px;
+        #border: 1px solid #999;
+        width:250px;
+        height:25px;
+        z-index:1;
+        text-align:left;
+      }
+
+ #get-value-control {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+        margin:5px;
+        top: 5px;
+        background-color: transparent;
+        padding: 5px;
+        #border: 1px solid #999;
+        width:250px;
+        height:25px;
+        z-index:1;
+        text-align:left;
+      }
+/*-------------------------
+GOOGLE POLYGON BUTTON
+----------------------------*/
+ #polygon-panel {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+        margin:5px;
+        top: 5px;
+        background-color: transparent;
+        padding: 5px;
+        #border: 1px solid #999;
+        width:250px;
+        height:25px;
+        z-index:1;
+        text-align:left;
+      }
+
+/*-------------------------
+DELETE BUTTON
+----------------------------*/
+ #delete-button {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+        margin:5px;
+        top: 50px;
+    	left:5px;
+        padding: 5px;
+        width:250px;
+        height:25px;
+        z-index:1;
+        text-align:left;
+      }
+
+
+/*-------------------------
+COLOR PALETTE
+----------------------------*/
+#color-palette {
+        clear: both;
+      }
+
+.color-button {
+        width: 14px;
+        height: 14px;
+        font-size: 0;
+        margin: 2px;
+        float: left;
+        cursor: pointer;
+      }
+
+
+/*-------------------------
+GEOCODER PANEL
+----------------------------*/
+ #geocoder-search-box {
+	font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+	margin:5px;
+        //top: 5px;
+        //left: -70px;
+        bottom: 50px;
+        left: 50px;
+        background-color: transparent;
+        padding: 5px;
+        #border: 1px solid #999;
+	width:300px;
+	height:25px;
+	z-index:1;
+	text-align:left;
+      }
+
+
+/*-------------------------
+FUSION TABLE INFO POPOVERS
+----------------------------*/
+.custom .popover {
+  width:200px;
+  height:250px;
+}
+
+
+/*-------------------------
+SLIDER
+----------------------------*/
+
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+
+
+#wrapper {
+          height: 100%;
+          width: 100%; 
+        }
+
+
+#map {
+            height:900px;
+            width:100%;
+            position: relative;
+        }
+#menu {
+          z-index: 100; 
+          position: absolute; 
+          #margin: 10px 0px 0px 80px;
+          margin: 5px 0px 0px 5px;
+          background-color: #fff; 
+          border: 1px #000 Solid; 
+          padding: 5px;
+	  align:right;
+        }
+#target_colorbar{
+ 	  #z-index: 100;
+          #position: absolute;
+          #margin: 10px 0px 0px 80px;
+          #background-color: #fff;
+          #border: 1px #000 Solid;
+          #padding: 5px;
+	  #width: 330px;
+        }
+.infowindow {
+    width:500px;!important;
+    height:300px;!important;
+}
+.noscrollbar {
+line-height:1.35;
+overflow:hidden;
+white-space:nowrap;
+}
+
+/*----------------------------
+TIME SERIES
+----------------------*/
+.ts_data_tab {
+    /*display:none;*/
+    font-size: 18px;
+    font-style:bold;
+    height: 990px;
+    overflow: scroll;
+    background:#ffffff;
+}
+/*----------------------------
+
+----------------------*/
+.fig {
+      font-family:Arial;
+      font-size:10pt;
+      color:darkgray;
+    }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.error {
+    color:red;
+    font-style:bold;
+}
+

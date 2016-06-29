@@ -1,0 +1,108 @@
+<div class="row">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div style="text-align:right"><a href="#menu-toggle" class="btn btn-default" id="menu-toggle-tab">HIDE<br> MENU</a></div>
+</div>
+</div>
+
+<!-- *********************** -->
+<!--  MAP REQUEST         -->
+<!-- *********************** -->
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<div class="row">
+	<!-- *********************** -->
+	<!--           VARIABLE      -->
+	<!-- *********************** -->
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		 <div style="text-align:center;color:#428bca"><h4>Map</h4></div>
+		<b><span style="color:blue;font-size:medium">Dataset:</span></b><br>
+		<select id="CHIRPSvariable" name="CHIRPSvariable" class="CHIRPSvariable" style="width:100%">
+			<optgroup label="+CHIRPS Precipitation">
+			   {% for x,y in formCHIRPSChoicesFEWSNET %}
+                            <option value="{{ x }}" {% if x == CHIRPSvariable  %} selected {% endif %}>{{ y }}</option>
+                        {% endfor %}
+			</optgroup>
+			<optgroup label="+MODIS NDVI Vegetation Index">
+			   {% for x,y in formMODISChoicesFEWSNET %}
+                            <option value="{{ x }}" {% if x == CHIRPSvariable  %} selected {% endif %}>{{ y }}</option>
+                        {% endfor %}
+			</optgroup>
+			<optgroup label="+Landsat NDVI Vegetation Index">
+			   {% for x,y in formLandsatChoicesFEWSNET %}
+                            <option value="{{ x }}" {% if x == CHIRPSvariable  %} selected {% endif %}>{{ y }}</option>
+                        {% endfor %}
+			</optgroup>
+		</select>
+	</div>
+</div>
+<div class="row">
+	<br>
+   <!-- *********************** -->
+   <!-- START DATE      -->
+   <!-- *********************** -->
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	   <div class="historical">
+	  <b><span style="color:blue;font-size:medium">Time Period:</span></b><br>
+	  <input type="text" id="dateStart" value="{{ dateStart }}" name="dateStart" class="dateStart" style="width:40%" >
+      <input type="text" id="dateEnd" value="{{ dateEnd }}" name="dateEnd" class="dateEnd" style="width:40%"><br>
+	     {%if form_error.dateStart%}
+        <div class="error" id="form_error_dateStart" style="display:inline">{{form_error.dateStart}}</div>
+         {%else%}
+        <div class="error" id="form_error_dateStart" style="display:none"></div>
+        {%endif%}
+        {%if form_error.dateEnd%}
+        <div class="error" id="form_error_dateEnd" style="display:inline">{{form_error.dateEnd}}</div>
+        {%else%}
+        <div class="error" id="form_error_dateEnd" style="display:none"></div>
+        {%endif%}  
+    </div>
+   </div>
+</div>
+
+<!-- *********************** -->
+<!--        CLIMATOLOGY YEARS     -->
+<!-- *********************** -->
+<div class="climatologyYears" {% if calculation == "value" %}style="display:none"{% endif %}>
+   <div class="row">
+	<br>
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<div class="histYearRange">
+		<b><span style="color:blue;font-size:medium">Year Range for Historical Average:</span></b><br>
+		<select id="yearStartClim" name="yearStartClim" class="yearStartClim" style="width:40%">
+			<option>loading</option>
+		</select>
+		-
+		 <select id="yearEndClim" name="yearEndClim" class="yearEndClim" style="width:40%">
+			<option>loading</option>
+		</select>
+		</div>
+        {%if form_error.yearStartClim%}
+        <br />
+        <div class="error" id="form_error_yearStartClim" style="display:inline">{{form_error.yearStartClim}}</div>
+        {%else%}
+        <div class="error" id="form_error_yearStartClim" style="display:none"></div>
+        {%endif%}
+        {%if form_error.yearEndClim%}
+        <div class="error" id="form_error_yearEndClim" style="display:inline">{{form_error.yearEndClim}}</div>
+        {%else%}
+        <div class="error" id="form_error_yearEndClim" style="display:none"></div>
+        {%endif%}
+      </div>
+    </div>
+</div>
+<div class="row">
+        <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <br><br>
+                <!-- *********************** -->
+                <!--    MAP BUTTON               -->
+                <!-- *********************** -->
+                <!--<button type="button" class="btn btn-large btn-primary pull-left" style="width:100%"
+                         id="form-button-submit-map" onclick="document.getElementById('toolAction').value='getMap';$('#subDomainTypeTS').val('None');">GET MAP LAYER</button><br>-->
+                <button type="button" class="btn btn-large btn-primary pull-left" style="width:100%"
+                         id="form-button-submit-map" onclick="document.getElementById('toolAction').value='getMap';">GET MAP LAYER</button><br>
+                        <br>
+        </div>
+</div>
+
+</div><!--end panelbody-->
+</div><!-- end panel-->

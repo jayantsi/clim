@@ -1,0 +1,139 @@
+<input type="hidden" id="pointsLongLat" name="pointsLongLat" value="">
+<div class="error" id="form_error_pointsLongLat"></div>
+
+<div class="points" id="points" {% if subDomainTypeTS!='points' %}style="display:none"{% endif %}>
+<b><span style="color:#006400;font-size:medium">Point(s)</span></b>: <br>
+
+ <a href="#" data-toggle="popover" data-placement="top" data-container="body"  data-trigger="focus"
+data-content="Color coded point marker for individual points. ">
+
+Marker</a>&nbsp;
+
+ <a href="#" data-toggle="popover" data-placement="top" data-container="body"  data-trigger="focus"
+data-content="Click the Magnifying Glass icon and the map will center on this marker so you can find it. ">
+
+Zoom</a>&nbsp;
+
+ <a href="#" data-toggle="popover" data-placement="top" data-container="body"  data-trigger="focus"
+data-content="Location of your point location: as East Longitude, North Latitude. For example: -112,42 for 42 North, -112 East">
+
+&nbsp;&nbsp;&nbsp;&nbsp;Location</a>
+
+<a href="#" data-toggle="popover" data-placement="top" data-container="body"  data-trigger="focus"
+data-content="An optional name that you can assign to this point, which will show up in labels in figures/data. This is optional.">
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</a>
+
+	<!--  ********************  -->
+	<!--    POINT 1        -->
+	<!--  ********************  -->
+	<div id="point1" class="point" style="display:{{p1display}}">
+		<div class="row">
+			   <input type="hidden" id="p1display" name="p1display" value="{{p1display}}"/>
+			   <input type="hidden" id="p1check" name="p1check" value="{{p1check}}"/>
+			<div class="col-md-12">
+				 <input type="checkbox" name="point" class="pointCheck" value="1" id="check1" {{p1check}} />
+
+				<img class="marker_icon" src="http://www.google.com/mapfiles/ms/micons/{{marker_colors.0}}.png" id="img1" alt="Point Marker">
+                <img class="zoomToMarker" id="zoom1" src="media/img/ZoomButton.png" height="25" alt="ZoomToMarker">
+				<input type="text" id="p1" class="pointLongLat" name="p1" value="{{p1}}" style="width:30%"/>
+                                <input type="text" id="p1altname" name="p1altname" value="{{p1altname}}" style="width:25%"/>
+
+                                   {% if timeSeriesCalc == "interannual" or timeSeriesCalc =="intraannual" or variable2display != "none"%}
+                                        <img class="add" id="pl2" src="media/img/PlusButton.png" height="15" style="display:none" alt="Add another point">
+                                   {%elif p2display == "none" %}
+                                        &nbsp;<img class="add" id="pl2" src="media/img/PlusButton.png" height="15" alt="Add another point">
+                                   {%else%}
+                                        <img class="add" id="pl2" src="media/img/PlusButton.png" height="15" style="display:none" alt="Add another point">
+                                   {%endif%}
+                <div class="error" id="form_error_p1" style="display:none"></div>
+			</div>
+		</div>
+	</div>
+	<!--  ********************  -->
+	<!--    POINT 2        -->
+	<!--  ********************  -->
+	<div class="row">
+		<div id="point2" class="point" style="display:{{p2display}}">
+			  <input type="hidden" id="p2display" name="p2display" value="{{p2display}}"/>
+			  <input type="hidden" id="p2check" name="p2check" value="{{p2check}}"/>
+			<div class="col-md-12">
+				   <input type="checkbox" name="point" class="pointCheck" value="2" id="check2" {{p2check}}/>
+				   <img class="marker_icon" src="http://www.google.com/mapfiles/ms/micons/{{marker_colors.1}}.png" id="img2" alt="Point Marker">
+                   <img class="zoomToMarker" id="zoom2" src="media/img/ZoomButton.png" height="25" alt="ZoomToMarker">
+				   <input type="text" id="p2" class="pointLongLat" name="p2" value="{{p2}}" style="width:30%"/>
+				   <input type="text" id="p2altname" name="p2altname" value="{{p2altname}}" style="width:25%"/>	
+				   <img class="minus" id="mi2" src="media/img/MinusButton.jpg" height="15" alt="Remove this point">
+				   {%if p3display == "none"%}
+					   <img class="add" id="pl3" src="media/img/PlusButton.png" height="15" alt="Add another point">
+				   {%else%}
+					   <img class="add" id="pl3" src="media/img/PlusButton.png" height="15" style="display:none" alt="Add another point">
+				   {%endif%}
+                <div class="error" id="form_error_p2" style="display:none"></div>
+			</div>
+	    </div>
+	</div>
+	<!--  ********************  -->
+	<!--    POINT 3        -->
+	<!--  ********************  -->
+	<div class="row">
+		<div id="point3" class="point" style="display:{{p3display}}">
+			   <input type="hidden" id="p3display" name="p3display" value="{{p3display}}"/>
+			   <input type="hidden" id="p3check" name="p3check" value="{{p3check}}"/>
+			<div class="col-md-12">
+				   <input type="checkbox" name="point" class="pointCheck" value="3" id="check3" {{p3check}}/>
+				   <img class="marker_icon" src="http://www.google.com/mapfiles/ms/micons/{{marker_colors.2}}.png" id="img3" alt="Point Marker">
+                   <img class="zoomToMarker" id="zoom3" src="media/img/ZoomButton.png" height="25" alt="ZoomToMarker">
+				   <input type="text" id="p3" class="pointLongLat" name="p3" value="{{p3}}" style="width:30%"/>
+				   <input type="text" id="p3altname" name="p3altname" value="{{p3altname}}" style="width:25%"/>	
+				   <img class="minus" id="mi3" src="media/img/MinusButton.jpg" height="15" alt="Remove this point">
+				   {%if p4display == "none"%}
+				   	<img class="add" id="pl4" src="media/img/PlusButton.png" height="15" alt="Add another point">
+				   {%else%}
+					   <img class="add" id="pl4" src="media/img/PlusButton.png" height="15" style="display:none" alt="Add another point">
+				   {%endif%}
+                   <div class="error" id="form_error_p3" style="display:none"></div>
+			</div> 
+		</div>
+	</div>
+	<!--  ********************  -->
+	<!--    POINT 4        -->
+	<!--  ********************  -->
+	<div class="row">
+		<div id="point4" class="point" style="display:{{p4display}}">
+			   <input type="hidden" id="p4display" name="p4display" value="{{p4display}}"/>
+			   <input type="hidden" id="p4check" name="p4check" value="{{p4check}}"/>
+			<div class="col-md-12">
+				   <input type="checkbox" name="point" class="pointCheck" value="4" id="check4" {{p4check}}/>
+				   <img class="marker_icon" src="http://www.google.com/mapfiles/ms/micons/{{marker_colors.3}}.png" id="img4" alt="Point Marker">
+                   <img class="zoomToMarker" id="zoom4" src="media/img/ZoomButton.png" height="25" alt="ZoomToMarker">
+				   <input type="text" id="p4" class="pointLongLat" name="p4" value="{{p4}}" style="width:30%"/>
+				   <input type="text" id="p4altname" name="p4altname" value="{{p4altname}}" style="width:25%"/>	
+				   <img class="minus" id="mi4" src="media/img/MinusButton.jpg" height="15" alt="Remove this point">
+				   {%if p5display == "none"%}
+					   <img class="add" id="pl5" src="media/img/PlusButton.png" height="15" alt="Add another point">
+				   {%endif%}
+                   <div class="error" id="form_error_p4" style="display:none"></div>
+		    </div> 
+	   </div>
+	</div>
+	<!--  ********************  -->
+	<!--    POINT 5        -->
+	<!--  ********************  -->
+	<div class="row">
+		<div id="point5" class="point" style="display:{{p5display}}">
+			   <input type="hidden" id="p5display" name="p5display" value="{{p5display}}"/>
+			   <input type="hidden" id="p5check" name="p5check" value="{{p5check}}"/>
+			<div class="col-md-12">
+				   <input type="checkbox" name="point" class="pointCheck" value="5" id="check5" {{p5check}}/>
+				   <img class="marker_icon" src="http://www.google.com/mapfiles/ms/micons/{{marker_colors.4}}.png" id="img5" alt="Point Marker">
+                   <img class="zoomToMarker" id="zoom1" src="media/img/ZoomButton.png" height="25" alt="ZoomToMarker">
+				   <input type="text" id="p5" class="pointLongLat" name="p5" value="{{p5}}" style="width:30%"/>
+				   <input type="text" id="p5altname" name="p5altname" value="{{p5altname}}" style="width:25%"/>	
+				   <img class="minus" id="mi5" src="media/img/MinusButton.jpg" height="15" alt="Remove this point">
+			       <div class="error" id="form_error_p5" style="display:none"></div>
+            </div> 
+		</div>
+	</div>
+	<!--  ********************  -->
+</div>

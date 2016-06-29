@@ -1,0 +1,7 @@
+indexes:
+
+- kind: MaxDates 
+  ancestor: no
+  properties:
+  - name: name
+  - name: date 

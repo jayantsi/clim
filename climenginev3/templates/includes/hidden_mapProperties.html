@@ -1,0 +1,42 @@
+<!-- ************************* -->
+<!--    HIDDEN                -->
+<!-- ************************* -->
+
+<input type="hidden" id="basemap" name="basemap" value="{{ basemap }}" />
+
+<input type="hidden" id="applicationName" name="applicationName" value="{{ applicationName }}" />
+
+<input type="hidden" class="colorbar" id="palette" name="palette" value="{{ palette }}" />
+<input type="hidden" class="mapcenterzoom" id="mapCenterLongLat" name="mapCenterLongLat" value="{{ mapCenterLongLat }}"/>
+<div class="mapcenterzoom" style="visibility:hidden">
+         <select id="mapzoom" name="mapzoom" style="width:100%" >
+                {% for x,y in formMapZoom %}
+                    <option value="{{ x }}" {% if x == mapzoom  %} selected {% endif %}>
+                        {{ y }}</option>
+                {% endfor %}
+        </select>
+</div>
+<div style="visibility:hidden">
+        <select id="opacity" name="opacity" style="width:100%">
+                        {% for x,y in formOpacity %}
+                            <option value="{{ x }}" {% if x == opacity  %} selected {% endif %}>
+                                {{ y }}</option>
+                        {% endfor %}
+                </select>
+</div>
+
+<input type="hidden" id="minYear" name="minYear" value="{{ minYear }}" />
+<input type="hidden" id="minDate" name="minDate" value="{{ minDate }}" />
+<input type="hidden" id="maxDate" name="maxDate" value="{{ maxDate }}" />
+<input type="hidden" id="mapid" name="mapid" value="{{ mapid }}" />
+<input type="hidden" id="token" name="token" value="{{ token }}" />
+<input type="hidden" name="sL" id="sL" value="{{ shareLink }}">
+<div class="getDataAtPoint">
+        <input type="hidden" id="pointValue" name="pointValue" value="{{ pointValue }}" />
+        <div class="getData">
+                <div class = "seePtValues"{% if toolAction == 'showSingleValueOnMap'  %} style="display:block"{%else%}style="display:none" {% endif %}>
+                        <input type="hidden" id="pointLat" name="pointLat" value="{{ pointLat }}" style="width:40%" />
+                        <input type="hidden" id="pointLong" name="pointLong" value="{{ pointLong }}" style="width:40%" />
+                </div>
+        </div>
+</div>

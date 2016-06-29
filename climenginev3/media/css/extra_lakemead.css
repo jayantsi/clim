@@ -1,0 +1,313 @@
+/*-------------------------
+BOOTSRAP OVERRIDES
+----------------------------*/
+/*Map Layer Options/Time Series Options Tabs*/
+#dataTab li a { 
+    color:#000000;
+    border-color: #000000;
+    border-bottom-color: transparent;
+    background-color:#ffffff;
+    font-size:20px;
+    font-style:bold;
+}
+    
+#dataTab li a:hover {
+    color:#000000;
+    border-color: #000000;
+    border-bottom-color: transparent;
+    background-color:#49675c;
+}
+
+#dataTab li.active a {
+    color:#000000;
+    border-color:#000000;
+    border-bottom-color: transparent;
+    /*background-color:White;*/ 
+    background-color:#d3ebe2;
+}
+
+/*Map and Figure/Data tabs*/
+#dataFigTab li a {
+    color:#000000; 
+    border-color: #000000;
+    border-bottom-color: transparent;
+    background-color:#a7d9c6;
+    font-size:20px;
+    font-style:bold;
+}
+
+
+#dataFigTab li a:hover {
+    color:#000000;
+    border-color: #000000;
+    border-bottom-color: transparent;
+    background-color:#49675c;
+}
+
+#dataFigTab li.active a {
+    color:#000000;
+    border-color: #000000;
+    border-bottom-color: transparent;
+    background-color:#d3ebe2; 
+}
+
+/*Title at upper left of page*/
+a#droughthome {
+    font-size:30px;
+    font-size:bold;
+    color:#5F90A8;
+}
+
+nav#above-map-nav {
+    background-color:#a7d8c6;
+}
+
+/*Plot Options for TS --> Does not work!*/
+#accordionBUILDTIMESERIES {
+    background-color:#e9f5f0;
+}
+
+#form-button-submit-map, #form-button-submit-map2 {
+    background-color:green;
+}
+
+#form-button-submit-timeseries, #form-button-submit-timeseries2 {
+    background-color:green;
+}
+/*-------------------------
+SPECIAL WHITE PANELS
+----------------------------*/
+.panel-forms{
+    background:#a7d8c6;
+}
+
+/*-------------------------
+DROPDOWN MENUES
+----------------------------*/
+/* dropdown for MASK options*/
+.dropdown-mask-menu {
+  min-width:300px;
+}
+
+.dropdown-menu {
+    min-width:330px;
+    padding: 5px; 
+    padding-bottom: 0px;
+    background-color:#a7d8c6;
+}
+
+a.dropdown-toggle {
+    font-size:20px;
+    font-style:bold;
+    /*color:#255a87;*/
+    color:#000000;
+}
+
+/*-------------------------
+GOOGLE LAYERS BUTTON
+----------------------------*/
+  #google-layer-control {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+        margin:5px;
+        top: 5px;
+        background-color: transparent;
+        padding: 5px;
+        /*border: 1px solid #999;*/
+        width:250px;
+        height:25px;
+        z-index:1;
+        text-align:left;
+      }
+
+ #get-value-control {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+        margin:5px;
+        top: 5px;
+        background-color: transparent;
+        padding: 5px;
+        #border: 1px solid #999;
+        width:250px;
+        height:25px;
+        z-index:1;
+        text-align:left;
+      }
+/*-------------------------
+GOOGLE POLYGON BUTTON
+----------------------------*/
+ #polygon-panel {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+        margin:5px;
+        top: 5px;
+        background-color: transparent;
+        padding: 5px;
+        #border: 1px solid #999;
+        width:250px;
+        height:25px;
+        z-index:1;
+        text-align:left;
+      }
+
+/*-------------------------
+DELETE BUTTON
+----------------------------*/
+ #delete-button {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+        margin:5px;
+        top: 50px;
+    	left:5px;
+        padding: 5px;
+        width:250px;
+        height:25px;
+        z-index:1;
+        text-align:left;
+      }
+
+
+/*-------------------------
+COLOR PALETTE
+----------------------------*/
+#color-palette {
+        clear: both;
+      }
+
+.color-button {
+        width: 14px;
+        height: 14px;
+        font-size: 0;
+        margin: 2px;
+        float: left;
+        cursor: pointer;
+      }
+
+
+/*-------------------------
+GEOCODER PANEL
+----------------------------*/
+ #geocoder-search-box {
+	font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+	margin:5px;
+        //top: 5px;
+        //left: -70px;
+        bottom: 50px;
+        left: 50px;
+        background-color: transparent;
+        padding: 5px;
+        #border: 1px solid #999;
+	width:300px;
+	height:25px;
+	z-index:1;
+	text-align:left;
+      }
+
+
+/*-------------------------
+FUSION TABLE INFO POPOVERS
+----------------------------*/
+.custom .popover {
+  width:200px;
+  height:250px;
+}
+
+
+/*-------------------------
+SLIDER
+----------------------------*/
+
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+
+
+#wrapper {
+          height: 100%;
+          width: 100%; 
+        }
+
+
+#map {
+            height:900px;
+            width:100%;
+            position: relative;
+        }
+#menu {
+          z-index: 100; 
+          position: absolute; 
+          #margin: 10px 0px 0px 80px;
+          margin: 5px 0px 0px 5px;
+          background-color: #fff; 
+          border: 1px #000 Solid; 
+          padding: 5px;
+	  align:right;
+        }
+#target_colorbar{
+ 	  #z-index: 100;
+          #position: absolute;
+          #margin: 10px 0px 0px 80px;
+          #background-color: #fff;
+          #border: 1px #000 Solid;
+          #padding: 5px;
+	  #width: 330px;
+        }
+.infowindow {
+    width:500px;!important;
+    height:300px;!important;
+}
+.noscrollbar {
+line-height:1.35;
+overflow:hidden;
+white-space:nowrap;
+}
+
+/*----------------------------
+TIME SERIES
+----------------------*/
+.ts_data_tab {
+    /*display:none;*/
+    font-size: 18px;
+    font-style:bold;
+    height: 990px;
+    overflow: scroll;
+    background:#ffffff;
+}
+/*----------------------------
+
+----------------------*/
+.fig {
+      font-family:Arial;
+      font-size:10pt;
+      color:darkgray;
+    }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.error {
+    color:red;
+    font-style:bold;
+}
+

@@ -1,0 +1,34 @@
+<div class="tabbable">
+	<!-- *******************   -->
+	<!--        NAVIGATION       -->
+	<!-- *******************   -->
+	<ul class="nav nav-tabs nav-default" id="dataTab" >
+	    <li {% if toolAction == "getMap" or toolAction == 'downloadRectangleSubset' or toolAction=='downloadFusionTableSubset' or toolAction == 'showSingleValueOnMap'%}class="active"{% endif %}>
+		<a href="#tabmapoptions" data-toggle="tab">Map Layer <br>Options</a>
+	    </li>
+	    <li {% if toolAction == "getTimeSeriesOverDateRange" %}class="active"{% endif %}>
+		<a href="#tabtimeseriesoptions" data-toggle="tab">Time Series<br> Options</a>
+	    </li>
+	</ul>
+
+	<div class ="container-fluid">
+	    <div class="tab-content my-tab">
+		<!-- *******************   -->
+		<!--  MAP WINDOW             -->
+		<!-- *******************   -->
+		<div class="tab-pane {% if toolAction == "getMap"  or toolAction== 'downloadRectangleSubset' or toolAction=='downloadFusionTableSubset' or toolAction == 'showSingleValueOnMap'%} active {% endif %}" id="tabmapoptions" style="max-height: 950px; overflow: scroll;">
+			<br>
+			{% include 'CLIMATEENGINE_EXPERT/map_window.html'%}
+		</div>
+		<!--   *******************  -->
+		<!--    TIME SERIES WINDOW   -->
+		<!--   *******************  -->
+		<div class="tab-pane {% if toolAction=="getTimeSeriesOverDateRange"%}active{% endif %}"  id="tabtimeseriesoptions" style="max-height: 950px; overflow: scroll;">
+			<br>
+			{% include 'includes/TS/timeseries_options.html'%}
+		</div>
+		<!-- *******************   -->
+	    </div><!--end tab-content-->
+	</div><!-- end container-->                      
+</div><!--end tabbable-->
+

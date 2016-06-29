@@ -1,0 +1,131 @@
+/*********************************
+*      STATES OVERLAY                   *
+*********************************/
+	layer = 'states';
+	window.statemarkerOverLayer = new google.maps.FusionTablesLayer({
+              heatmap: { enabled: false },
+              query: {
+                select: window.ftDefaults[layer][3],
+                from: window.ftDefaults[layer][0],
+                where: ""
+              },
+  	      options:  styles_ftOutlines[layer]
+         });
+{% if 'states' in layer %}
+	window.statemarkerOverLayer.setMap(window.map);
+{% else %}
+	window.statemarkerOverLayer.setMap(null);
+{% endif  %}
+/*********************************
+*     COUNTIES OVERLAY                   *
+*********************************/
+	layer = 'counties';
+	window.countymarkerOverLayer =new google.maps.FusionTablesLayer({
+              heatmap: { enabled: false },
+              query: {
+                select: window.ftDefaults[layer][3],
+                from: window.ftDefaults[layer][0],
+                where: ""
+              },
+              options:  styles_ftOutlines[layer]
+         });
+
+{% if 'counties' in layer %}
+	window.countymarkerOverLayer.setMap(window.map);
+{% else %}
+	window.countymarkerOverLayer.setMap(null);
+{% endif %}
+/*********************************
+*     HUCS OVERLAY                   *
+*********************************/
+{% if 'hucoverlayer' in layer %}
+	window.hucsmarkerOverLayer = new google.maps.KmlLayer(
+		 window.fewsLayerKMLs['hucoverlayer'],{
+	map:map,
+	    preserveViewport: true,
+	    suppressInfoWindows: false
+	 });
+	window.hucsmarkerOverLayer.setMap(window.map);
+{% else %}
+	window.hucsmarkerOverLayer = new google.maps.KmlLayer('',{
+	map:map,
+	    preserveViewport: true,
+	    suppressInfoWindows: false
+	 });
+	window.hucsmarkerOverLayer.setMap(null);
+{% endif %}
+/*********************************
+*     CLIMATE DIVS OVERLAY                   *
+*********************************/
+	layer='divisions';
+	window.climatedivmarkerOverLayer =  new google.maps.FusionTablesLayer({
+              heatmap: { enabled: false },
+              query: {
+                select: window.ftDefaults[layer][3],
+                from: window.ftDefaults[layer][0],
+                where: ""
+              },
+              options:  styles_ftOutlines[layer]
+         });
+{% if 'divisions' in layer %}
+	window.climatedivmarkerOverLayer.setMap(window.map);
+{% else %}
+	window.climatedivmarkerOverLayer.setMap(null);
+{% endif %}
+/*********************************
+*     PSAS OVERLAY                   *
+*********************************/
+	layer ='psas';
+	window.psasmarkerOverLayer = new google.maps.FusionTablesLayer({
+              heatmap: { enabled: false },
+              query: {
+                select: window.ftDefaults[layer][3],
+                from: window.ftDefaults[layer][0],
+                where: ""
+              },
+              options:  styles_ftOutlines[layer]
+         });
+{% if 'psas' in layer %}
+	window.psasmarkerOverLayer.setMap(window.map);
+{% else %}
+	window.psasmarkerOverLayer.setMap(null);
+{% endif %}
+/*********************************
+*      KML LAYER                    *
+*********************************/
+{% if 'kmloverlayer' in layer %}
+	window.kmlmarkerOverLayer = new google.maps.KmlLayer('{{ kmlurl }}', {
+	map:map,
+	    preserveViewport: true,
+	    suppressInfoWindows: false
+	 });
+	window.kmlmarkerOverLayer.setMap(window.map);
+{% else %}
+	window.kmlmarkerOverLayer = new google.maps.KmlLayer('', {
+	map:map,
+	    preserveViewport: true,
+	    suppressInfoWindows: false
+	 });
+	window.kmlmarkerOverLayer.setMap(null);
+{% endif %}
+
+{% if 'kmloverlayer2' in layer %}
+        window.kmlmarkerOverLayer2 = new google.maps.KmlLayer(
+		{url:'{{ kmlurl2 }}'}, 
+		{
+		map:map,
+		preserveViewport: true,
+		suppressInfoWindows: false
+         	}
+	);
+        window.kmlmarkerOverLayer2.setMap(window.map);
+{% else %}
+        window.kmlmarkerOverLayer2 = new google.maps.KmlLayer('', {
+        map:map,
+            preserveViewport: true,
+            suppressInfoWindows: false
+         });
+        window.kmlmarkerOverLayer2.setMap(null);
+{% endif %}
+
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% include 'LAKEMEAD/head.html'%}
+		<script type="text/javascript" src="collections_js/dataStore_appSpecific.js"></script>
+		{% include 'includes/basicscripts.html'%}
+	</head>
+	{% include 'LAKEMEAD/analyticstracking.php'%}
+
+	<body>
+	   <div class="wrapper container-fluid">
+		<!-- *******************   -->
+		<!-- NAVIGATION             -->
+		<!-- *******************   -->
+		{% include 'LAKEMEAD/navigation.html'%}
+		<!-- *******************   -->
+		<!-- TAB WINDOW             -->
+		<!-- *******************   -->
+		<!--<form action="/climateEngineExpert" id="form_all" method="post">-->
+		<form action="/" id="form_all" method="post">
+			 <!-- *******************   -->
+                     <!-- HIDDEN VARIABLES             -->
+                     <!-- *******************   -->
+               	    {% include 'includes/hidden_maxDates.html'%}
+                    {% include 'includes/hidden_mapProperties.html'%}
+                    {% include 'includes/TS/hidden_timeseries.html'%}
+                    <input type="hidden" id="dispEnv" name="dispEnv" class="dispEnv" value="{{ dispEnv }}" />
+                    <input type="hidden" class="toolAction" id="toolAction" name="toolAction" value="{{ toolAction }}">
+			<div class="row">
+                                <!-- *******************   -->
+                                <!--        TAB FOR OPTIONS      -->
+                                <!-- *******************   -->
+                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 fixed">
+                                        {% include 'LAKEMEAD/taboptions.html'%}
+                                </div>
+                                <!-- *******************   -->
+                                <!--        TAB FOR MAP/FIGURES/DATA      -->
+                                <!-- *******************   -->
+                                <div class="col-xs-6 col-sm-6 col-md-8 col-lg-9 scrollit">
+                                        {% include 'LAKEMEAD/displaywindow.html'%}
+                                </div>
+                        </div><!--end of row-->
+		</form>
+		 <!-- *******************   -->
+		<!-- MODAL WINDOWS             -->
+		 <!-- *******************   -->
+		{% include 'modal_downloadErrorMessage.html'%}
+		{% include 'modal_getValue500ErrorMessage.html'%}
+		{% include 'modal_getValue429ErrorMessage.html'%}
+	    {% include 'modal_getValue404ErrorMessage.html'%}
+        {% include 'modal_jsonParseErrorMessage.html'%}
+        {% include 'modal_abortErrorMessage.html'%}
+        {% include 'modal_connectionErrorMessage.html'%}
+        {% include 'modal_uncaughtErrorMessage.html'%}	
+        {% include 'modal_timeoutErrorMessage.html'%}
+        {% include 'LAKEMEAD/PAGES/modal_home.html'%}
+		{% include 'LAKEMEAD/PAGES/modal_aboutdata.html'%}
+		{% include 'LAKEMEAD/PAGES/modal_aboutmetrics.html'%}
+		{% include 'LAKEMEAD/PAGES/modal_caseStudies.html'%}
+		{% include 'LAKEMEAD/PAGES/modal_references.html'%}
+		{% include 'modal_sharelink.html'%}
+		{% include 'modal_downloadURL.html'%}
+		{% include 'modal_downloadErrorMessage.html'%}
+		{% include 'LAKEMEAD/PAGES/modal_sponsors.html'%}
+		{% include 'LAKEMEAD/PAGES/modal_contact.html'%}
+
+		<!-- *******************   -->
+		<!-- SCRIPTS             -->
+		<!-- *******************   -->
+		{% include 'LAKEMEAD/scripts.html'%}
+		<!-- *******************   -->
+	  </div><!--end of wrapper-->
+	  <!-- *******************   -->
+	  <!-- FOOTER             -->
+	  <!-- *******************   -->
+	  {% include 'LAKEMEAD/footer.html'%}
+	  <!-- *******************   -->
+	</body>
+
+</html>

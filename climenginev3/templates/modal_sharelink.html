@@ -1,0 +1,26 @@
+<!-- Modal -->
+<div class="modal fade" id="shareLinkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelShareLink" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- HEADER -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabelShareLink">Share Results</h4>
+            </div>
+            <div class="modal-body">
+				<p style='font-size:medium'>Link to these results from Climate Engine. 
+				<br><br>
+			 	<a onclick="$('#shareLink2Show').val($('#shareLinkBitly').val())">Short Link</a> &nbsp;&nbsp;<a onclick="$('#shareLink2Show').val($('#shareLink').val())" >Long Link</a>&nbsp;<br><br>
+				<input type="hidden" id="shareLinkBitly" name="shareLinkBitly" value="{{ shareLinkBitly }}" style="width:100%" readonly />
+				<input type="hidden" id="shareLink" name="shareLink" value="{{ shareLink }}" style="width:100%" readonly />
+				<input  id="shareLink2Show" name="shareLink2Show" value="" style="width:100%" readonly />
+				<br><br>
+				Copy this link and share it anywhere on the web. Everyone who visits it will jump right to the results you are seeing.
+				</p>
+            </div><!--modal-body-->
+        </div><!--modal-content-->
+    </div><!--modal-dialog-->
+</div>

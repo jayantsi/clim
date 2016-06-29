@@ -1,0 +1,107 @@
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+	<!-- ******************** -->
+	<!--   TITLE		-->
+	<!-- ******************** -->
+	<div class="panel panel-default">
+	<div class="panel-body" style="background:#ffffff">
+		<div class="row">
+			<div class="col-md-12">
+				<h3 style="color:blue"> <div id='timeSeriesTitle'></div></h3>	
+			</div>
+		</div>
+	</div></div>
+	<!-- ******************** -->
+	<!--   CHART TYPE      -->
+	<!-- ******************** -->
+	<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-6">
+				<!-- ******************** -->
+				<!--   	CHART TYPE     -->
+				<!-- ******************** -->
+                <div id="cL_chartType" class="cL_interannual cl_intraannual cl_days">
+                    <b>Set Chart Type:</b>
+                    <select name="chartType" class="chartType" id="chartType">
+                    {% for x,y in formChartType %}
+                        <option value="{{ x }}" {% if x == chartType  %} selected {% endif %}>{{ y }}</option>
+                    {% endfor %}
+                  </select> 
+                </div>
+				<!-- ******************** -->
+				<!--   	TARGET YEAR    -->
+				<!-- ******************** -->
+                <div id="cL_yearTarget" class="cl_intraannual">
+                   <br><br>
+                     <b>Choose Target Year:</b>
+                     <select id ="yearTargetFigure" name ="yearTargetFigure" class="yeartimeperiod">
+                        <option>loading</option>
+                    </select><br /> 
+                </div>
+				<!-- ******************** -->
+				<!--   	THRESHOLD     -->
+				<!-- ******************** -->
+                <div id="cL_threshold" class="cl_interannual">
+                    <br />
+                    <b>Choose Threshold(s):</b>
+                    <input type="text" id="threshold" value="100" name="threshold" class="threshold" size="7"><br>
+                    <input style="display:none" type="text" id="threshold2" value="100" name="threshold2" class="threshold" size="7"><br>
+                </div>
+            </div><!--end <div class="col-md-6">-->
+			<!-- ******************** -->
+			<!--   	LAYERS         -->
+			<!-- ******************** -->
+			<div class="col-md-6">
+                <div id="cL_percentiles" class="cl_intraannual">
+                    {% for x,y in formHighChartLayersIntraannual %}
+                        <input type="checkbox" name="{{ x }}" value="{{ x }}" id="{{ x }}">{{ y }}
+                        <br>
+                    {% endfor %}
+                </div>                 
+                <div id="cL_average" class="cl_interannual cl_days">
+                    <input type="checkbox" name="average" value="average" id="average">Average   
+                </div>
+                <div id="cL_range" class="cl_interannual cl_days">
+                    <input type="checkbox" name="range" value="range" id="range" style="display:none">Range
+                </div>
+                <div id="cL_runmean" class="cl_interannual cl_days">
+                    <input type="checkbox" name="runmean" value="runmean" id="runmean">
+                    Running Mean over <div style="display:inline;">
+                    <span id="runmeanYearText">
+                        <input type="text" name="runningMeanYears" class="runmean" id="runningMeanYears" value="{{ runningMeanYears}}" size="3">
+                        Years
+                    </span>  
+                    <span id="runmeanDaysText">
+                        <input type="text" name="runningMeanDays" class="runmean" id="runningMeanDays" value="{{ runningMeanDays}}" size="3">
+                        Days
+                    </span>
+                    </div>
+                </div>
+
+			</div><!--end class="col-md-6"-->
+		</div><!-- end row-->
+</div></div><!-- end panel body set-->
+</div><!--end panelbody-->
+</div><!--end panel-->
+
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+	<div class="row">
+		<div class="col-md-12">
+				<!-- ******************** -->
+				<!--         MAKE HIGH CHARTS FIGURE      -->
+				<!-- ******************** -->
+				<div id="highchartsfigure"></div>
+                {% if ts_error %}
+				    <p style="font-size:4;color:red;">
+					The following error occurred:<br /><br />
+					{{ ts_error }}
+				    </p>
+				 {% endif %}
+		</div><!-- end col -->
+		<p style="text-align:center">Zoom in by clicking and dragging a window in time in either x or y direction.<br>
+			Drag legend to desired location. </p>
+	</div><!-- end row -->
+</div><!--end panelbody-->
+</div><!-- end panel-->

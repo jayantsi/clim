@@ -1,0 +1,55 @@
+<!--                    -->
+<!--   GOOGLE MAP LAYERS -->
+<!--                    -->
+<div id="google-layer-control">
+        <button type="button" data-toggle="dropdown" class="dropdown btn btn-default" style="height:20px;font-size:11px;font-family:Arial, sans-serif;font-weight:bold;border-radius: 0;padding:0;">
+<!--&nbsp;Layers&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+Layers
+<span class="caret"></span> &nbsp;</button>
+<ul class="dropdown-menu pull-left" style="margin-left:20px;margin-right:20px;padding:5px;border:10px;margin:10px">
+  <div class="layer">
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<h4><span style="color:blue">Layers</span></h4>
+ <div class="panel panel-default">
+   <div class="panel-body panel-forms" style="background:#ffffff">
+                {% for x,y in formLayers %}
+                   {% if not mapid and x=='custommaplayer'%}
+		     <div id='maplayer' style="display:none">
+                        <li style="font-family: Arial, sans-serif;font-size: 11px;">&nbsp;
+				<input type="checkbox" name="layer" value="{{x}}" id="{{x}}" 
+				{% if x in layer  %}checked="checked"{% endif %}>
+                                &nbsp;{{y}}&nbsp;
+			</li>
+		      </div>
+                   {% else %}
+                        {% if x == 'kmloverlayer'%}
+				<hr>
+			{% endif %}
+                        <li style="font-family: Arial, sans-serif;font-size: 11px;">&nbsp;
+				<input type="checkbox" name="layer" value="{{x}}" id="{{x}}" 
+				{% if x in layer  %}checked="checked"{% endif %}>
+                        {% if x == 'kmloverlayer'%}
+                                &nbsp;{{y}}&nbsp;<br>
+                                <div class="kmlurl">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="kmlurl" {% if x in layer  %}checked="checked"{% endif %} name="kmlurl" value="{{ kmlurl }}" style="width:90%"
+                                        onfocus="this.originalvalue=this.value" />&nbsp;
+                                </div>
+                         {% elif x == 'kmloverlayer2'%}
+                                &nbsp;{{y}}&nbsp;<br>
+                                 <div class="kmlurl">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="kmlurl2" {% if x in layer  %}checked="checked"{% endif %} name="kmlurl2" value="{{ kmlurl2 }}" style="width:90%"
+                                        onfocus="this.originalvalue=this.value" />&nbsp;
+                                </div>
+                        {% else %}
+                                &nbsp;{{y}}&nbsp;
+                        {% endif %}
+                        </li>
+                {% endif %}
+                {% endfor %}
+    </div></div>
+    </div></div>
+ </div><! -- end layer -->
+</ul>
+</div>
+

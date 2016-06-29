@@ -1,0 +1,76 @@
+	<script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+ 	<script type="text/javascript" src="media/js/detect_browserdisplay.js"></script>
+    <script type="text/javascript" src="media/myjs/cookies.js"></script>
+	
+    <!--GOOGLE MAP API-->
+    <!-- to get rid of sensor not required error ... can delete eventually-->
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing"></script>
+    
+    <!--New functions for Ajax call implementation-->
+    <script type="text/javascript" src="media/myjs/map_functions.js"></script>
+    <script type="text/javascript" src="media/myjs/timeseries_functions.js"></script>
+    
+    <!--                   -->
+	<!--  LISTENERS        -->
+	<!--                   -->
+    <script type="text/javascript" src="collections_js/set_formDefaults.js"></script>
+    <script type="text/javascript" src="collections_js/set_maxDates.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_timeperiods.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_product.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_variable.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_calculation_statistic.js"></script>
+
+    <script type="text/javascript" src="media/myjs/formListener_highchartlayers.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_formsubmit.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_coupleFormVariables.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_points.js"></script>
+    <script type="text/javascript" src="media/myjs/drawColorbars.js"></script>
+    <script type="text/javascript" src="media/myjs/formChecks.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_colorbar.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_subDomains.js"></script>
+    <script type="text/javascript" src="media/myjs/zoomOnMap.js"></script><!--geocoder and gVIZ-->
+    <script type="text/javascript" src="media/myjs/formListener_fusiontables.js"></script> <!--avg timeseries over fusion tables-->
+    <script type="text/javascript" src="media/myjs/formListener_dataDownload.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_buttonhandlers.js"></script>
+    <script type="text/javascript" src="media/myjs/formListener_googlemap.js"></script>
+    <script type="text/javascript" src="media/myjs/bitly.js"></script>
+
+	<!--                   -->
+	<!--  SCRIPTS        -->
+	<!---->
+    <script type="text/javascript" src="media/myjs/map_google.js"></script><!--MAP INTERFACE-->
+    <script type="text/javascript" src="media/myjs/progressWindow.js"></script> <!-- PROGRESS BAR -->
+    <script type="text/javascript" src="/media/myjs/colorbar.js"></script><!--DYNAMIC COLORBAR-->
+    <script type="text/javascript" src="/media/myjs/colorbrewer.js"></script><!--DYNAMIC COLORBAR-->
+    <script type="text/javascript" src="/media/myjs/polygons.js"></script><!--Draw custom polygons on map-->
+    <script type="text/javascript" src="/media/myjs/popover.js"></script>
+    <script type="text/javascript" src="/media/myjs/dropdowns.js"></script>
+    <script type="text/javascript" src="/media/myjs/datepicker.js"></script>
+
+
+<!-- commented out right now.. this was supposed to center the modal windows in the middle of the screen.. found it put them near the bottom though. 
+<script>
+$(function() {
+    function reposition() {
+        var modal = $(this),
+        dialog = modal.find('.modal-dialog');
+        modal.css('display', 'block');
+        
+        // Dividing by two centers the modal exactly, but dividing by three 
+        // or four works better for larger screens.
+        dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 2));
+    }
+    // Reposition when a modal is shown
+    $('#downloadErrorModal').on('show.bs.modal', reposition);
+    $('#getValue429ErrorModal').on('show.bs.modal', reposition);
+    $('#getValue500ErrorModal').on('show.bs.modal', reposition);
+    $('#timeoutErrorMessage').on('show.bs.modal', reposition);
+    // Reposition when the window is resized
+    $(window).on('resize', function() {
+        $('.modal:visible').each(reposition);
+    });
+});
+</script>
+-->

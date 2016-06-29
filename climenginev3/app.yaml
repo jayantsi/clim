@@ -1,0 +1,71 @@
+#application: clim-engine
+application: climengine
+version: 1 
+runtime: python27
+api_version: 1
+threadsafe: true
+handlers:
+- url: /tasks/maxDate
+  script: main.app
+  #login: admin
+- url: /images/team
+  static_dir: templates/images/team
+  #static_dir: templates/CLIMATEENGINE/images/team
+- url: /images/sponsors
+  static_dir: templates/images/sponsors
+  #static_dir: templates/CLIMATEENGINE/images/sponsors
+- url: /images/landing
+  static_dir: templates/CLIMATEENGINE_EXPERT/images/landing
+- url: /images
+  static_dir: templates/images
+- url: /CLIMATEENGINE_EXPERT/scripts
+  static_dir: templates/CLIMATEENGINE_EXPERT/scripts
+- url: /CLIMATEENGINE/scripts
+  static_dir: templates/CLIMATEENGINE/scripts
+- url: /templates/CLIMATEENGINE/images
+  static_dir: templates/CLIMATEENGINE/images
+- url: /FEWSNET/scripts
+  static_dir: templates/FEWSNET/scripts
+- url: /templates/FEWSNET/images
+  static_dir: templates/FEWSNET/images
+
+- url: /nevadaet/scripts
+  static_dir: templates/nevadaet/scripts
+- url: /templates/nevadaet/images
+  static_dir: templates/nevadaet/images
+
+- url: /LAKEMEAD/scripts
+  static_dir: templates/LEAKEMEAD/scripts
+- url: /templates/LAKEMEAD/images
+  static_dir: templates/LAKEMEAD/images
+- url: /PRECISIONGRAZING/scripts
+  static_dir: templates/PRECISIONGRAZING/scripts
+- url: /templates/PRECISIONGRAZING/images
+  static_dir: templates/PRECISIONGRAZING/images
+- url: /GDDTOOL/scripts
+  static_dir: templates/GDDTOOL/scripts
+- url: /templates/GDDTOOL/images
+  static_dir: templates/GDDTOOL/images
+- url: /media
+  static_dir: media
+- url: /collections_js
+  static_dir: collections_js
+- url: /climateEngine
+  script: main.app
+- url: /runTool
+  script: main.app
+- url: /oauth2callback
+  script: oauth2client.appengine.application
+- url: /.*
+  script: main.app
+libraries:
+- name: jinja2
+  version: "2.6"
+- name: webapp2
+  version: "2.5.2"
+- name: pycrypto
+  version: "latest"
+- name: numpy
+  version: "1.6.1"
+inbound_services:
+- warmup

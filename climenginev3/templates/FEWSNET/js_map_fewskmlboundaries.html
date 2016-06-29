@@ -1,0 +1,96 @@
+/*********************************
+*      COUNTRIES OVERLAY                   *
+*********************************/
+	var layer = 'fewscountries';
+	 window.countrymarkerOverLayer =  new google.maps.FusionTablesLayer({
+	      heatmap: { enabled: false },
+	      query: {
+		select: window.ftDefaults[layer][3],
+		from: window.ftDefaults[layer][0],
+		where: ""
+	      },
+	      options:  styles_ftOutlines[layer]
+	 });
+{% if 'countryoverlayer' in layer %}
+ 	window.countrymarkerOverLayer.setMap(window.map);
+{% else %}
+ 	window.countrymarkerOverLayer.setMap(null);
+{% endif  %}
+/*********************************
+*      ADMIN1 OVERLAY                   *
+*********************************/
+	var layer = 'fewsadmin1overlayer';
+	window.admin1markerOverLayer= new google.maps.FusionTablesLayer({
+	      heatmap: { enabled: false },
+	      query: {
+		select: window.ftDefaults[layer][3],
+		from: window.ftDefaults[layer][0],
+		where: ""
+	      },
+	      options:  styles_ftOutlines[layer]
+	 });
+{% if 'admin1overlayer' in layer %}
+	window.admin1markerOverLayer.setMap(window.map);
+{% else %}
+	window.admin1markerOverLayer.setMap(null);
+{% endif  %}
+/*********************************
+*      ADMIN2 OVERLAY                   *
+*********************************/
+	 var layer = 'fewsadmin2overlayer';
+	window.admin2markerOverLayer= new google.maps.FusionTablesLayer({
+	      heatmap: { enabled: false },
+	      query: {
+		select: window.ftDefaults[layer][3],
+		from: window.ftDefaults[layer][0],
+		where: ""
+	      },
+	      options:  styles_ftOutlines[layer]
+	 });
+        window.admin2markerOverLayer.setMap(null);
+{% if 'admin2overlayer' in layer %}
+	window.admin2markerOverLayer.setMap(window.map);
+{% else %}
+	window.admin2markerOverLayer.setMap(null);
+{% endif  %}
+
+/*********************************
+*      LIVELIHOOD OVERLAY                   *
+*********************************/
+	var layer = 'fewslivelihoodzoneoverlayer';
+	window.livelihoodmarkerOverLayer= new google.maps.FusionTablesLayer({
+	      suppressInfoWindows: true,
+	      heatmap: { enabled: false },
+	      query: {
+		select: window.ftDefaults[layer][3],
+		from: window.ftDefaults[layer][0],
+		where: ""
+	      },
+	      options:  styles_ftOutlines[layer]
+	 });
+        window.livelihoodmarkerOverLayer.setMap(null);
+{% if 'livelihoodzoneoverlayer' in layer %}
+        window.livelihoodmarkerOverLayer.setMap(window.map);
+{% else %}
+        window.livelihoodmarkerOverLayer.setMap(null);
+{% endif  %}
+
+/*********************************
+*      CROPZONE OVERLAY                   *
+*********************************/
+	var layer = 'fewscropzoneoverlayer';
+	window.cropzonemarkerOverLayer= new google.maps.FusionTablesLayer({
+	      heatmap: { enabled: false },
+	      query: {
+		select: window.ftDefaults[layer][3],
+		from: window.ftDefaults[layer][0],
+		where: ""
+	      },
+	      options:  styles_ftOutlines[layer]
+	 });
+{% if 'cropzoneoverlayer' in layer %}
+        window.cropzonemarkerOverLayer.setMap(window.map);
+{% else %}
+        window.cropzonemarkerOverLayer.setMap(null);
+{% endif  %}
+

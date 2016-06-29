@@ -1,0 +1,47 @@
+	<br>
+<!-- ***************    -->
+<!-- Title -->
+<!-- ***************    -->
+<!--<div class="printableMap" id="printableMap">-->
+<!--	<div class="col-md-6">
+	<div id="titleRegion" style="display:none"></div>
+</div>
+-->
+<div id="titleRegion" style="display:none" class="col-md-6">
+<!--
+	<span style="font-size:18pt"><div style="text-align:center">{{ title }}</div></span>
+	{ if source %}<span style="font-size:10pt"><div style="text-align:center">Data Source: {{ source }}</div></span>
+	{ endif }<br />
+	{ if calculation=='anom' or calculation=='clim' }
+		<span style ="font-size:10pt"><div style="text-align:center"> {{ climatologyNotes }}</div></span>
+	{ endif } 
+	-->
+</div>
+<!-- ***************    -->
+<!-- Colorbar -->
+<!-- ***************    -->
+<div id="colorbarRegion" style="display:none" class="col-md-6">
+    <div class="colorbarHTML">
+	<div name="form_colorbar" id="target_colorbar" style="width:100%">
+		<div style="text-align:center">
+	    <div id="colorbar"><svg style="width:400;height:30;"></svg></div>
+        </div>
+	</div>
+    </div>
+    <div style="text-align:center" id="colorbarLabelOnMap"></div>
+</div>
+<!-- ***************    -->
+<!-- Map -->
+<!-- ***************    -->
+<div id="map-wrapper">
+	<div id="map"></div>
+</div>
+
+<!-- ***************    -->
+<!-- ADD MAP COMPONENTS -->
+<!-- ***************    -->
+ {% include 'includes/MAP/component_slider.html'%}
+ {% include 'includes/MAP/component_polygon_panel.html'%} 
+ {% include 'includes/MAP/component_geocoder.html'%} <!--geocoder search box-->
+ {% include 'includes/MAP/component_layers.html'%} <!--layers dropdown on map-->
+ {% include 'includes/MAP/component_getvalue.html'%} <!--get value-->

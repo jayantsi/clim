@@ -1,0 +1,121 @@
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+	<!-- ******************** -->
+	<!--   TITLE		-->
+	<!-- ******************** -->
+	<div class="panel panel-default">
+	<div class="panel-body" style="background:#ffffff">
+		<div class="row">
+			<div class="col-md-12">
+				<h3 style="color:blue"> 
+				{% if timeSeriesCalc =='days'%}
+				Time Series of Daily Data
+				{% elif timeSeriesCalc == 'interannual' %}
+				Time Series of Yearly Values
+				{% elif timeSeriesCalc == 'intraannual' %}
+				Time Series of Single Year
+				{% endif %}
+				</h3>	
+			</div>
+		</div>
+	</div></div>
+	<!-- ******************** -->
+	<!--   CHART TYPE      -->
+	<!-- ******************** -->
+	<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-6">
+				<!-- ******************** -->
+				<!--   	CHART TYPE     -->
+				<!-- ******************** -->
+				 <b>Set Chart Type:</b>
+				 <select name="chartType" class="chartType" id="chartType">
+					{% for x,y in formChartType %}
+					    <option value="{{ x }}" {% if x == chartType  %} selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				  </select>	
+				<!-- ******************** -->
+				<!--   	TARGET YEAR    -->
+				<!-- ******************** -->
+				 {% if timeSeriesCalc =='intraannual' %}
+					 <br><br>
+					 <b>Choose Target Year:</b>
+					 <select id ="yearTargetFigure" name ="yearTargetFigure" class="yeartimeperiod">
+						<option>loading</option>
+					</select><br />
+				 {% endif %}
+				<!-- ******************** -->
+				<!--   	THRESHOLD     -->
+				<!-- ******************** -->
+				{% if timeSeriesCalc == "interannual" %}
+				<br><br>
+				<div class="modifyhighchartlayer">
+				{% else%}
+				<div class="modifyhighchartlayer" style="display:none">
+				{% endif %}
+					<b>Choose {%if timeSeriesTextData2%} Variable 1 {%endif%}Threshold:</b>
+					<input type="text" id="threshold" value="100" name="threshold" class="threshold" size="7"><br>
+					 {%if timeSeriesTextData2%} 
+					    <b>Choose Variable 2 Threshold:</b>
+					    <input type="text" id="threshold2" value="100" name="threshold2" class="threshold" size="7"><br>
+				         {%endif%}
+				</div>
+			</div>
+			<!-- ******************** -->
+			<!--   	LAYERS         -->
+			<!-- ******************** -->
+			<div class ="col-md-6">
+				{% if timeSeriesCalc == "intraannual"%}
+				  <div class="highchartlayerIntraannual">
+					    {% for x,y in formHighChartLayersIntraannual %}
+						<input type="checkbox" name="{{ x }}" value="{{ x }}" id="{{ x }}">{{ y }}
+						<br>
+					    {% endfor %}
+				   </div>
+				{% endif %}
+				{% if timeSeriesCalc != "intraannual" %}
+				<div class="highchartlayer">
+					    {% for x,y in formHighChartLayers %}
+						<input type="checkbox" name="{{ x }}" value="{{ x }}" id="{{ x }}">{{ y }}
+						{% if x == "runmean" %} over
+					    {% if timeSeriesCalc == "interannual" %}
+					    <input type="text" name="runningMeanYears" class="runmean" id="runningMeanYears" value="{{ runningMeanYears}}" size="3">
+					    years
+				   	   {% endif %}
+					    {% if timeSeriesCalc == "days" %}
+						    <input type="text" name="runningMeanDays" class="runmean" id="runningMeanDays" value="{{ runningMeanDays}}" size="3">
+						    days
+					    {%endif%}
+						{% endif %}<br>
+					    {% endfor %}	
+				</div>	
+				{% endif %}
+			</div>
+		</div><!-- end row-->
+</div></div><!-- end panel body set-->
+</div><!--end panelbody-->
+</div><!--end panel-->
+
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+	<div class="row">
+		<div class="col-md-12">
+				<!-- ******************** -->
+				<!--         MAKE HIGH CHARTS FIGURE      -->
+				<!-- ******************** -->
+				<div id="highchartsfigure"></div>
+				{% if not ts_error %}
+				    {% include 'includes/js_highchartsfigure.html'%}
+				{% else %}
+				    <p style="font-size:4;color:red;">
+					The following error occurred:<br /><br />
+					{{ ts_error }}
+				    </p>
+				 {% endif %}
+		</div><!-- end col -->
+		<p style="text-align:center">Zoom in by clicking and dragging a window in time in either x or y direction.<br>
+			Drag legend to desired location. </p>
+	</div><!-- end row -->
+</div><!--end panelbody-->
+</div><!-- end panel-->

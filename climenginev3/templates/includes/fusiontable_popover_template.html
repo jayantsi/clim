@@ -1,0 +1,36 @@
+<a data-toggle="popover" data-html="true" data-placement="bottom" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 300px;" id="customft{{ftid}}" rel="popover" data-original-title='Custom Fusion Table(FT) Form' data-content='
+ <div class="panel panel-default">
+        <div class="panel-body panel-forms">
+                <div class="row">
+                        <div class="col-xs-12">
+                        	<a href="https://www.google.com/fusiontables/data?dsrcid=implicit" 
+					target="_blank">Create FT</a> |
+                        	<a href="https://support.google.com/fusiontables/answer/184641?hl=en" 
+					target="_blank">Help FT</a>
+                        	<hr>
+                        </div>
+                        <div class="col-xs-12">
+                                <b>Fusion Table Id:</b><br>
+                                 <input type="text" id="ft-popover{{ftid}}" class="ft-popover" 
+					name="ft-popover{{ftid}}".val("Name")/>
+                                <br>(i.e. 1AOrGgpc4pCQLjmQTY5bHiivT-7h3dcIKdcCSyioz)
+                                <br><br>
+                                <b>Table Column Name:</b><br>
+                                 <input type="text" class="ftcolumnName-popover" 
+					id="ftcolumnName-popover{{ftid}}" name="ft{{ftid}}columnName">
+                                <br>(either Name or name)
+                        </div>
+                        <div class="col-xs-12">
+                                <hr>
+                                <button type="button" class="btn btn-large btn-success pull-left fusiontableload-button" 
+					style="width:100%" id="ftbutton{{ftid}}" 
+					onclick="loadFusionTableFeatures({{ftid}},true);">Load FT</button>
+                                <div id="buttonmessage{{ftid}}"></div>
+                        </div>
+                </div>
+        </div>
+</div>
+' template=''>
+    <!--<img title="Info/Load fusion table" src="images/info_button.png"/>-->
+    <img class="upload_button" id="upload_ft_button{{ftid}}" title="Info/Upload fusion table" src="media/img/upload_button.png"/>
+</a>

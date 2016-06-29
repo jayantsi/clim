@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div class="modal fade" id="downloadURLModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelLink" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- HEADER -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabelLink">Download Rectangular Region of Data:</h4>
+            </div>
+            <div class="modal-body">
+		You can download a rectangular region of the map data with the following URL: 
+	<br><br>	
+		<input id="downloadURL" name="downloadURL" value="{{ downloadURL }}" type="text" style="width:100%" readonly />
+		<a href="" id="downloadURLLink">(Go to Link)</a>
+		<!--<br><br>
+		<span style="color:red">Please wait until the Progress Bar has disappeared before going to link</span>-->
+            </div><!--modal-body-->
+        </div><!--modal-content-->
+    </div><!--modal-dialog-->
+</div>

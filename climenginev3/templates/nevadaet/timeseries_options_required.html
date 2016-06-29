@@ -1,0 +1,111 @@
+<!-- ******************** -->
+<!--        REGIONS         -->
+<!-- ******************** -->
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+	<div style="text-align:center;color:#5cb85c"><h4>Time Series</h4></div>
+     <div class="row">
+         <div class="col-md-12">
+          <b><span style="color:#006400;font-size:medium">Calculation:</span></b> 
+	<a id="showFigureLink" style="display:none" href="#" onClick="$('#showFigureModal').click()">Show Figure</a>
+          <br>
+          <select id="timeSeriesCalc" name="timeSeriesCalc" class="timeSeriesCalc" style="width:100%">
+            {% for x,y in formTimeSeriesCalc %}
+                <!--<option value="{{ x }}" {% if x == timeSeriesCalc  %} selected {% endif %} 
+                {% if subDomainTypeTS == "customShapes" and x == "intraannual"%} disabled{%endif%} >{{ y }}</option>-->
+                <option value="{{ x }}" {% if x == timeSeriesCalc  %} selected {% endif %}>{{ y }}</option>
+            {% endfor %}
+          </select>
+          <!--HIDE all date params, we catch those from the map interface-->
+          <div style="display:none;">
+
+          <div class="seasontimeperiod yeartimeperiod" {% if timeSeriesCalc != "days" %}style="display:block"
+                    {% else %}style="display:none"{% endif %}>
+            <b>Start Day:</b>
+            <select id="monthStart" name="monthStart" class="monthStart" size="1">
+                {% for x,y in formMonth %}
+                    <option value="{{ x }}" {% if x == monthStart  %} selected {% endif %}>{{ y }}</option>
+                {% endfor %}
+            </select>
+            <select id="dayStart" name="dayStart" class="dayStart" size="1">
+                {% for x,y in formDay %}
+                    <option value="{{ x }}" {% if x == dayStart  %} selected {% endif %}>{{ y }}</option>
+                {% endfor %}
+            </select>
+          </div>
+         <div class="seasontimeperiod" {% if timeSeriesCalc == "interannual" %}style="display:block"
+                {% else %}style="display:none"{% endif %}>
+            <br>
+            <b>End Day:</b>
+             <select id="monthEnd" name="monthEnd" class="monthEnd" size="1" style="width:6">
+                {% for x,y in formMonth %}
+                <option value="{{ x }}" {% if x == monthEnd  %} selected {% endif %}>{{ y }}</option>
+                {% endfor %}
+            </select>
+            <select id="dayEnd" name="dayEnd" class="dayEnd" style="width:5">
+                {% for x,y in formDay %}
+                <option value="{{ x }}" {% if x == dayEnd  %} selected {% endif %}>{{ y }}</option>
+                {% endfor %}
+            </select>
+        </div>
+         <div class="seasontimeperiod" {% if timeSeriesCalc == "interannual" %}style="display:block"
+                        {% else %}style="display:none"{% endif %}>
+            <br>
+                                <b>Year Range:</b>
+                                <select id="yearStart" name="yearStart" class="yearStart" size="1">
+                                        <option>loading</option>
+                                </select>  to
+                                <select id="yearEnd" name="yearEnd" class="yearEnd" size="1">
+                                        <option>loading</option>
+                                </select>
+                  </div>
+        </div>
+        
+        </div> <!--END HIDE all time paramaters-->
+    </div><br>
+	<b><span style="color:#006400;font-size:medium">Area Type:</span></b><br>
+	<div class="row">
+		<div class="col-md-12">
+				<div class="domain">
+					<select id="subDomainTypeTS" name="subDomainTypeTS" style="width:100%">
+						{% for x,y in formSubDomainTypeTS %}
+						    <option value="{{ x }}" {% if x==subDomainTypeTS %} selected {% endif %}
+						        >{{ y }}
+							</option>
+						{% endfor %}
+					</select>
+					<br><br>
+                    <div class="error" id="form_error_subDomainTypeTS"></div>
+				</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{% include 'FEWSNET/fusiontable_fewsnet.html'%}
+		</div>
+	</div><br>
+	<div class="customShapes" {% if subDomainTypeTS!='customShapes' %}style="display:none"{% endif %}>
+		<div class="row">
+			<div class="col-md-12">
+			    <div class="filterRegions">
+			        <input type="checkbox" name ="filterRegions" id="filterRegions" value="1" class="filterRegions" checked="checked"/>
+			    <span style="color:#006400">Show Only Regions with filter:</span>
+				<input type="text" id="ftFilter1" name="ftFilter1" class="ftFilter" style="width:100%;height:20px" value="">
+                </div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{% include 'FEWSNET/pointstable_fewsnet.html'%}
+		</div>
+	</div><br>
+    <div class="row">    
+        <button type="button" class="btn btn-large btn-success pull-left" style="width:100%"
+         id="form-button-submit-timeseries" 
+         onclick="document.getElementById('toolAction').value='getTimeSeriesOverDateRange'">GET TIME SERIES</button> 
+	</div>
+
+</div><!--end panelbody-->
+</div><!-- end panel-->
+

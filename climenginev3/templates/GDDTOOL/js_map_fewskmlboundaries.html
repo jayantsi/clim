@@ -1,0 +1,58 @@
+/*********************************
+*      zumwalt OVERLAY                   *
+*********************************/
+	var layer = 'zumwalt';
+	 window.zumwaltmarkerOverLayer =  new google.maps.FusionTablesLayer({
+	      heatmap: { enabled: false },
+	      query: {
+		select: window.ftDefaults[layer][3],
+		from: window.ftDefaults[layer][0],
+		where: ""
+	      },
+	      options:  styles_ftOutlines[layer]
+	 });
+{% if 'zumwalt' in layer %}
+ 	window.zumwaltmarkerOverLayer.setMap(window.map);
+{% else %}
+ 	window.zumwaltmarkerOverLayer.setMap(null);
+{% endif  %}
+
+
+/*********************************
+*      zumwaltforage OVERLAY                   *
+*********************************/
+        var layer = 'zumwaltforage';
+         window.zumwaltforagemarkerOverLayer =  new google.maps.FusionTablesLayer({
+              heatmap: { enabled: false },
+              query: {
+                select: window.ftDefaults[layer][3],
+                from: window.ftDefaults[layer][0],
+                where: ""
+              },
+              options:  styles_ftOutlines[layer]
+         });
+{% if 'zumwaltforage' in layer %}
+        window.zumwaltforagemarkerOverLayer.setMap(window.map);
+{% else %}
+        window.zumwaltmarkerOverLayer.setMap(null);
+{% endif  %}
+/*********************************
+*     COUNTIES OVERLAY                   *
+*********************************/
+        layer = 'counties';
+        window.countymarkerOverLayer =new google.maps.FusionTablesLayer({
+              heatmap: { enabled: false },
+              query: {
+                select: window.ftDefaults[layer][3],
+                from: window.ftDefaults[layer][0],
+                where: ""
+              },
+              options:  styles_ftOutlines[layer]
+         });
+
+{% if 'counties' in layer %}
+        window.countymarkerOverLayer.setMap(window.map);
+{% else %}
+        window.countymarkerOverLayer.setMap(null);
+{% endif %}
+

@@ -1,0 +1,148 @@
+function getAverage(chart) {
+    //loop through data and build total/count to calculate average from
+    //only use visible series
+    var total = 0;
+    var count = 0;
+    $.each(chart.series, function(i,series) {
+        if(series.visible === true && series.name != 'average') {
+             $.each(series.data, function(i,point) {
+                total += point.y;
+                count++;
+            });
+        }
+    });
+    var average = (total / count);
+    
+    //if the average series already exists, remove it
+    var avgSer = chart.get('average');
+    if(avgSer != null) {
+        avgSer.remove();
+    }
+    
+    //get the axis extremes to use as the x values for the average series
+    var ext = chart.xAxis[0].getExtremes();
+    
+    //add the average series
+    chart.addSeries({
+        id: 'average',
+        name: 'average',
+        showInLegend:true, 
+        type:'line',
+        lineWidth:1,
+        color:'#c00',
+        data:[[ext.min, average],[ext.max, average]]
+    });
+}
+function getRange(chart) {
+    //loop through data and build total/count to calculate min/max from
+    //only use visible series
+    //var minvalue = 0;
+    //var count = 0;
+    //$.each(chart.series, function(i,series) {
+     //   if(series.visible === true && series.name != 'average') {
+      //       $.each(series.data, function(i,point) {
+     //           total += point.y;
+     //           count++;
+     //       });
+     //   }
+    //});
+
+    //if the average series already exists, remove it
+    var avgSer = chart.get('range');
+    if(avgSer != null) {
+        avgSer.remove();
+    }
+
+    //get the axis extremes to use as the x values for the average series
+    var extx = chart.xAxis[0].getExtremes();
+    var exty = chart.yAxis[0].getExtremes();
+    chart.addSeries({
+        id: 'range',
+        name: 'range',
+        showInLegend:false,
+        type:'arearange',
+        lineWidth:0,
+        color:'#ff0000',
+        data: [[extx.min, exty.dataMin, exty.dataMax],[extx.max, exty.dataMin,exty.dataMax]],
+	fillOpacity: 0.1,
+	zIndex:0.1,
+	linkedTo: 'previous',
+    });
+}
+
+
+function getRunningMeanYears(chart) {
+    var num=;
+    var total = 0;
+    var count = 0;
+    var rm_data = [];
+    $.each(chart.series, function(i,series) {
+        if(series.visible === true && series.name != 'average') {
+             $.each(series.data, function(i,point) {
+                total += point.y;
+                count++;
+            });
+        }
+    });
+    var average = (total / count);
+
+    //if the average series already exists, remove it
+    var avgSer = chart.get('runningMeanYears');
+    if(avgSer != null) {
+        avgSer.remove();
+    }
+
+    //get the axis extremes to use as the x values for the average series
+    var ext = chart.xAxis[0].getExtremes();
+
+    //add the average series
+    chart.addSeries({
+        id: 'runningMeanYears',
+        name: 'runningMeanYears',
+        showInLegend:true,
+        type:'line',
+        lineWidth:1,
+        color:'#c00',
+        data:[[ext.min, average],[ext.max, average]]
+    });
+}
+
+def compute_running_mean(data,num):
+    '''
+    Computes running mean
+    Args:
+        data: highcarts formatted data: [[int_time1,val], [int_time2, val], ...]
+    rm_data =[]
+    if num is not None:
+        if num % 2 == 0:
+            num = num /2 -1
+        else:
+            num = (num - 1) / 2
+
+    for idx,row_data in enumerate(data):
+        int_time = row_data[0]
+        try:
+            val = round(float(row_data[1]),4)
+            #deal with None data
+            if abs(val + 9999.0) < 0.0001:
+                val = None
+        except:
+            val = None
+        #Running Mean
+        if num is not None:
+            skip = False
+            if idx > num and idx < len(data) -1 - num:
+                cnt = 0; summ = 0
+                for i in range(idx -  num,idx + num + 1):
+                    try:
+                        rm_val = round(float(data[i][1]),4)
+                        summ+=rm_val
+                        cnt+=1
+                    except:
+                        skip = True
+                        break
+                if not skip and cnt >0:
+                    rm_data.append([int_time,round(summ / float(cnt),4)])
+
+    return rm_data
+

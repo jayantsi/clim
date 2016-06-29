@@ -1,0 +1,182 @@
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<b><span style="color:blue;font-size:medium">Variable 2</span></b>
+<a data-toggle="popover" data-html="true" data-placement="right" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 400px;" rel="popover" data-original-title='Selecting Variable 2' data-content='
+In this section of the data request, you select the product dataset to use for the second variable you access from the <a href="https://explorer.earthengine.google.com/" target="_blank">Google Cloud</a>.
+<br><br>
+First, select a product type (either remote sensing or meteorological dataset).
+Making a selection will populate the datasets you can select from.
+<br><br>
+Second, select a dataset within the general product type.
+Making a selection here will populate the variables you can select from.
+<br><br>
+Third, select a variable from the dataset to look at.
+<br><br>
+Proceed to the other sections of this data request form to tailor your request.
+<br><br>
+When you are finished with your selections, click on the green "GET TIME SERIES" button to make your request to
+see a map summary from your selections.
+' template=''><img src="images/questionmark.gif"></a>
+<div class="row">
+	<div class="col-md-12">
+		<b>Type:</b><br>
+                <select id="productType2TS" name="productType2TS" class="productType2TS" style="width:100%" >
+                        {% for x,y in formProductType %}
+                            <option value="{{ x }}" {% if x == productType2TS  %} selected {% endif %}>{{ y }}</option>
+                        {% endfor %}
+                </select>
+		<br>
+		<b>Dataset:</b><br>
+		<select id="product2TS" name="product2TS" class="product2TS" style="width:100%" >
+                        <option>loading</option>
+		</select>
+		 <br>
+                <div class="maca-var2" {% if product =='MACA'%}style="display:block"
+                                  {%else%}style="display:none"{%endif%}>
+			<b>CMIP5 Model:</b><br>
+                        <select id="model2TS" name="model2TS" class="model2TS" style="width:100%">
+                                <option>loading</option>
+                        </select>
+                        <br>
+                </div>
+                <div class="maca-var2" {% if product =='MACA'%}style="display:block"
+                                  {%else%}style="display:none"{%endif%}>
+			<b>CMIP5 Scenario:</b><br>
+                        <select id="scenario2TS" name="scenario2TS" class="scenario2TS" style="width:100%">
+                                <option>loading</option>
+                        </select>
+                        <br>
+                </div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		    <b>Variable:</b>
+			<select id="variable2TS" name="variable2TS" class="variable2" style="width:100%">
+				<option>loading</option>
+			</select>
+			<br>
+			<div class="statisticChoice" {% if not timeSeriesCalc =="interannual" %}style="display:none"{% else %}style="display:block"{% endif %}>
+				<b>Year Statistic: </b><br>
+				<select id="statistic2TS" name="statistic2TS" class="statistic2TS"  style="width:100%">
+				<option>loading</option>
+				</select>
+			</div>
+    	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+<br>
+<b><span style="color:blue;font-size:medium">Time Period</span></b>
+<a data-toggle="popover" data-html="true" data-placement="right" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 400px;" rel="popover" data-original-title='Selecting a Time Period' data-content='
+In this section of the data request, you will select a date range from the dataset to perform the above processing upon.
+<br><br>
+First, select a general time period you would like to look at, such as the last Winter. The date range will be automatically populated for you.
+<br><br>
+Second, if you would like to manually enter or adjust your date range, first select "custom" and then manually enter your date range.
+' template=''><img src="images/questionmark.gif"></a>
+<br>
+		<div class="dataAvailability2"></div>
+     </div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		   <div class="timeperiod2TS" {% if timeSeriesCalc != "days" %}style="display:none"{% endif %}>
+			<select id="timeperiod2TS" name="timeperiod2TS" class="timeperiod2TS" style="width:100%">
+				{% for x,y in formTimePeriods %}
+				    <option value="{{ x }}" {% if x == timeperiod2TS  %} selected {% endif %}>{{ y }}</option>
+				{% endfor %}
+			 </select>
+		   </div>
+		    <div class="seasontimeperiod" {% if timeSeriesCalc == "interannual" %}style="display:block"
+			   {% else %}style="display:none"{% endif %}>
+				<select id="season2" name="season2" class="season" style="width:100%">
+					    {% for x,y in formSeasons %}
+					    <option value="{{ x }}" {% if x == season2  %} selected {% endif %}>{{ y }}</option>
+					    {% endfor %}
+				</select>
+		    </div>
+		    <br>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		    <div class="daytimeperiod" {% if timeSeriesCalc != "days" %}style="display:none" {% endif %}>
+				  <b>Start Date:</b><br>
+				  <input type="text" id="dateStart2TS" value="{{ dateStart2TS }}" name="dateStart2TS" class="dateStart2TS" style="width:90%">
+                  {%if form_error.dateStart2TS%}
+                  <br />
+                 <div class="error" id="form_error_dateStart2TS" style="display:inline">{{form_error.dateStart2TS}}</div>
+                {%else%}
+                <div class="error" id="form_error_dateStart2TS" style="display:none"></div>
+                {%endif%}
+		   </div>
+		    <div class="seasontimeperiod yeartimeperiod" {% if timeSeriesCalc != "days" %}style="display:block"
+		    {% else %}style="display:none"{% endif %}>
+                <b>Start Day:</b><br>
+				<select id="monthStart2" name="monthStart2" class="monthStart" size="1">
+					{% for x,y in formMonth %}
+						<option value="{{ x }}" {% if x == monthStart2  %} selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</select>
+				<select id="dayStart2" name="dayStart2" class="dayStart" size="1">
+					{% for x,y in formDay %}
+						<option value="{{ x }}" {% if x == dayStart2  %} selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</select>
+            <!--<input class="yeartimeperiod" type="hidden" id="yearTarget2Form" value="{{ yearTarget2 }}" name="yearTarget2Form" size="4">-->
+		    </div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		    <div class="daytimeperiod" {% if timeSeriesCalc != "days" %}style="display:none" {% endif %}>
+				  <b>End Date:</b><br>
+				  <input type="text" id="dateEnd2TS" value="{{ dateEnd2TS }}" name="dateEnd2TS" class="dateEnd2TS" style="width:90%">
+                  {%if form_error.dateEnd2TS%}
+                  <br />
+                  <div class="error" id="form_error_dateEnd2TS" style="display:inline">{{form_error.dateEnd2TS}}</div>
+                  {%else%}
+                  <div class="error" id="form_error_dateEnd2TS" style="display:none"></div>
+                  {%endif%}
+		   </div>
+            <div class="seasontimeperiod" {% if timeSeriesCalc != "days" %}style="display:block"
+            {% else %}style="display:none"{% endif %}>
+                <b>End Day:</b><br>
+                <select id="monthEnd2" name="monthEnd2" class="monthEnd" size="1">
+                    {% for x,y in formMonth %}
+                        <option value="{{ x }}" {% if x == monthEnd2  %} selected {% endif %}>{{ y }}</option>
+                    {% endfor %}
+                </select>
+                <select id="dayEnd2" name="dayEnd2" class="dayEnd" size="1">
+                    {% for x,y in formDay %}
+                        <option value="{{ x }}" {% if x == dayEnd2  %} selected {% endif %}>{{ y }}</option>
+                    {% endfor %}
+                </select>
+            <!--<input class="yeartimeperiod" type="hidden" id="yearTarget2Form" value="{{ yearTarget2 }}" name="yearTarget2Form" size="4">-->
+            </div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		   <div class="seasontimeperiod" {% if timeSeriesCalc == "interannual" %}style="display:block"
+			{% else %}style="display:none"{% endif %}>
+				<b>Year Range:</b><br>
+				<select id="yearStart2" name="yearStart2" class="yearStart2" size="1">
+					<option>loading</option>
+				</select> to 
+				 <select id="yearEnd2" name="yearEnd2" class="yearEnd2" size="1">
+					<option>loading</option>
+				</select>
+                {%if form_error.yearEnd2%}
+                <br />
+                <div class="error" id="form_error_yearEnd2" style="display:inline">{{form_error.yearEnd2}}</div>
+                {%else%}
+                <div class="error" id="form_error_yearEnd2" style="display:none"></div>
+                {%endif%}
+		  </div>
+	</div>
+</div>
+</div><!--end panelbody-->
+</div><!-- end panel-->
+

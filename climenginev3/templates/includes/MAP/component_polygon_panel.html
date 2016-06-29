@@ -1,0 +1,14 @@
+<!--                    -->
+<!--   POLYGON PANEL -->
+<!--                    -->
+<!--Polygon map controls-->
+<!--need to check for the choice=polygon and that it was checked on form submit...-->
+{%if (ftChoice1 == "polygon" and ft1check == "checked") or (ftChoice2 == "polygon" and ft2check == "checked" ) or (ftChoice3 == "polygon" and ft3check == "checked") or (ftChoice4 == "polygon" and ft4check == "checked" ) or (ftChoice5 == "polygon" and ft5check == "checked")%}
+<div id="polygon-panel" style="height:21px;font-size:11px;font-family:Arial, sans-serif;font-weight:bold;">
+{% else %}
+<div id="polygon-panel" style="display:none;height:21px;font-size:11px;font-family:Arial, sans-serif;font-weight:bold;">
+{% endif %}
+    <div id="color-palette"></div>
+    <!--<div><button type="button" id="delete-button">Delete Selected Shape</button></div>-->
+</div>
+

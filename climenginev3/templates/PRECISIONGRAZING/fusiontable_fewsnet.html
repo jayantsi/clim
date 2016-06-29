@@ -1,0 +1,309 @@
+<!--  ********************* -->
+<!--     CUSTOM SHAPES       -->
+<!--  ********************* -->
+<div class="customShapes" {% if subDomainTypeTS!='customShapes' %}style="display:none"{% endif %}>
+	<b><span style="color:#006400;font-size:medium">Choose Your Regions</span></b>:
+	 &nbsp;&nbsp;&nbsp;
+	<a href="#" data-toggle="popover" data-placement="top" data-container="body"  
+				data-trigger="focus" data-content="Region"></a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="#" data-toggle="popover" data-placement="top" data-container="body"  data-trigger="focus"
+	data-content="Sub Region"></a>
+
+	<!--  ********************* -->
+	<!--     CUSTOM 1           -->
+	<!--  ********************* -->
+	<div id="fusiontable1" class="fusiontable" style="display:{{ft1display}}">
+		<div class="row">
+			<input type="hidden" id="ft1display" name="ft1display" value="{{ft1display}}"/>
+			<input type="hidden" id="ft1check" name="ft1check" value="{{ft1check}}"/>
+			<input type="hidden" id="ft1altname" name="ft1altname" value="{{ft1altname}}"/>
+			 <input type="hidden" id="ft1columnName" name="ft1columnName" value="{{ft1columnName}}">
+			 <input type="hidden" id="ft1" class="ft" name="ft1" value="{{ft1}}"/>
+			<input type="hidden" id="SubChoice1" name="SubChoice1" value="{{ftSubChoice1}}"/>
+            <div class="col-md-12">
+				<input title="View layer on map" type="checkbox" name="ft" class="ftCheck" value="1" id="checkft1" {{ft1check}} />
+				<select id="ftChoice1" name="ftChoice1" class="ftChoice" style="width:35%">
+					{% for x,y in formFusionTableChoices %}
+					    <option value="{{ x }}" {% if x==ftChoice1 %} selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</select>
+                
+				<!--     RELOAD           -->
+				<div class="reload" id="reload1" {% if ftChoice1=='polygon'%} 
+				    style="display:none"{% else %}style="display:inline"{%endif%}>
+				    <a href="#" onclick="reloadFusionTableFeatures(1);">
+				    <img title="Show all zones on map" src="images/reload.png" height="25px" ></a>
+				</div>
+				<!--     CUSTOM FT 1 POPOVER           -->
+				<div class="ftcustom1" {% if ftChoice1=='custom'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					{% with ftid="1" %}
+						{% include "includes/fusiontable_popover_template.html"%}
+					{% endwith %}
+				</div>
+				<!--    END CUSTOM FT 1 POPOVER           -->
+
+				<!--     CUSTOM POLYGON 1 POPOVER           -->
+				<div class="polygon1" {% if ftChoice1=='polygon'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					<input type="hidden" id="polygon1" class="polygonString" name="polygon1" value="{{polygon1}}"/>
+						{% with ftid="1" %}
+							{% include "includes/polygon_popover_template.html"%}
+						{% endwith %}
+					<div id="color-palette" style="display:inline">
+						<span class="color-button" id="color-button1" 
+						    style="border: 2px solid black; background-color:{{shape_colors.0}};"></span>
+					</div>
+					<button type="button" id="delete-button1" class="delete-button">	
+						<img title="Delete from map" src="images/erase-polygonbutton.png"></button>
+				</div>
+				<!--    END CUSTOM POLYGON 1 POPOVER           -->
+				<select id="ftSubChoice1" name="ftSubChoice1" class ="ftSubChoice" style="width:40%">
+					    <option value="" ></option>
+				</select>
+
+				<!--<input type="text" id="ft1" class="ft" name="ft1" value="{{ft1}}" size="15"/>-->
+                                        {% if ft2display == "none" %}
+						<img class="add" id="pl_ft2" src="media/img/PlusButton.png" height="15" title="Add another region" style="display:inline">
+					 {%else%}
+						<img class="add" id="pl_ft2" src="media/img/PlusButton.png" height="15" style="display:none" title="Add another region">
+					 {%endif%}
+                 		<div class="error" id="form_error_ftSubChoice1" style="display:none"></div>
+			</div>
+		</div>
+	 </div>
+
+	<!--  ********************* -->
+	<!--     CUSTOM 2           -->
+	<!--  ********************* -->
+	<div id="fusiontable2" class="fusiontable" style="display:{{ft2display}}">
+		<div class="row">
+			<input type="hidden" id="ft2display" name="ft2display" value="{{ft2display}}"/>
+			<input type="hidden" id="ft2check" name="ft2check" value="{{ft2check}}"/>
+		    	<input type="text" id="ft2" class="ft" name="ft2" value="{{ft2}}"/>
+		    	<input type="hidden" id="ft2columnName" name="ft2columnName" value="{{ft2columnName}}"/>
+    			<input type="text" id="ft2altname" name="ft2altname" value="{{ft2altname}}" size="10"/>
+                	<input type="hidden" id="SubChoice2" name="SubChoice2" value="{{ftSubChoice2}}"/>
+			<div class="col-md-12">
+				<input title="View layer on map" type="checkbox" name="ft" class="ftCheck" value="2" id="checkft2" {{ft2check}} />
+				<select id="ftChoice2" name="ftChoice2" class="ftChoice" style="width:35%">
+					{% for x,y in formFusionTableChoices %}
+					    <option value="{{ x }}" {% if x==ftChoice2 %} selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</select>
+				<!--     RELOAD           -->
+                <div class="reload" id="reload2" {% if ftChoice2=="polygon"%} 
+                    style="display:none"{% else %}style="display:inline"{%endif%}>
+                    <a href="#" onclick="reloadFusionTableFeatures(2);">
+                    <img title="Show all options on map" src="images/reload.png" height="25px" ></a>
+                </div>
+				<!--     CUSTOM FT 2 POPOVER           -->
+				<div class="ftcustom2" {% if ftChoice2=='custom'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					{% with ftid="2" %}
+						{% include "includes/fusiontable_popover_template.html"%}
+					{% endwith %}
+				</div>
+				<!--    END CUSTOM FT 2 POPOVER           -->
+				<!--     CUSTOM POLYGON 2 POPOVER           -->
+					<div class="polygon2" {% if ftChoice2=='polygon'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					<input type="hidden" id="polygon2" class="polygonString" name="polygon2" value="{{polygon2}}"/>
+					{% with ftid="2" %}
+						{% include "includes/polygon_popover_template.html"%}
+					{% endwith %}
+					<div id="color-palette" style="display:inline">
+						<span class="color-button" id="color-button2"
+						    style="border: 2px solid black; background-color:{{shape_colors.1}};"></span>
+					</div>
+					<button type="button" id="delete-button2" class="delete-button">
+						<img title="Delete from map" src="images/erase-polygonbutton.png"></button>
+				</div>
+				<!--    END CUSTOM POLYGON 1 POPOVER           -->
+
+				 <select id="ftSubChoice2" name="ftSubChoice2" class ="ftSubChoice" style="width:35%">
+					    <option value="" >loading</option>
+				</select>
+			    	<img class="minus" id="mi_ft2" src="media/img/MinusButton.jpg" height="15" title="Remove this region">
+			    	{% if ft3display == "none" %}
+					<img class="add" id="pl_ft3" src="media/img/PlusButton.png" height="15" title="Add another region"> 
+			    	{%else%}
+					    <img class="add" id="pl_ft3" src="media/img/PlusButton.png" height="15" style="display:none" title="Add another region">
+			    	{%endif%}
+                    <div class="error" id="form_error_ftSubChoice2" style="display:none"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--  ********************* -->
+	<!--     CUSTOM 3           -->
+	<!--  ********************* -->
+	<div id="fusiontable3" class="fusiontable" style="display:{{ft3display}}">
+		<div class="row">
+    			<input type="hidden" id="ft3display" name="ft3display" value="{{ft3display}}"/>
+			 <input type="hidden" id="ft3check" name="ft3check" value="{{ft3check}}"/>
+			 <input type="hidden" id="ft3columnName" name="ft3columnName" value="{{ft3columnName}}"/>
+			 <input type="text" id="ft3" class="ft" name="ft3" value="{{ft3}}" size="15"/>
+			 <input type="text" id="ft3altname" name="ft3altname" value="{{ft3altname}}" size="10"/>
+             <input type="hidden" id="SubChoice3" name="SubChoice3" value="{{ftSubChoice3}}"/>
+			<div class="col-md-12">
+			 	<input title="View layer on map" type="checkbox" name="ft" class="ftCheck" value="3" id="checkft3" {{ft2check}} />
+				 <select id="ftChoice3" name="ftChoice3" class="ftChoice" style="width:35%">
+					{% for x,y in formFusionTableChoices %}
+					    <option value="{{ x }}" {% if x==ftChoice3 %} selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</select>
+				<!--     RELOAD           -->
+				<div class="reload" id="reload3" {% if ftChoice3=="polygon"%} 
+                    style="display:none"{% else %}style="display:inline"{%endif%}>
+                    <a href="#" onclick="reloadFusionTableFeatures(3);">
+                    <img title="Show all options on map" src="images/reload.png" height="25px" ></a>
+                </div>
+                <!--     CUSTOM FT 3 POPOVER           -->
+				<div class="ftcustom3" {% if ftChoice3=='custom'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					{% with ftid="3" %}
+						{% include "includes/fusiontable_popover_template.html"%}
+					{% endwith %}
+				</div>
+				<!--    END CUSTOM FT 3 POPOVER           -->
+				<!--     CUSTOM POLYGON 3 POPOVER           -->
+					<div class="polygon3" {% if ftChoice3=='polygon'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					<input type="hidden" id="polygon3" class="polygonString" name="polygon3" value="{{polygon3}}"/>
+					{% with ftid="3" %}
+						{% include "includes/polygon_popover_template.html"%}
+					{% endwith %}
+					<div id="color-palette" style="display:inline">
+						<span class="color-button" id="color-button3"
+						    style="border: 2px solid black; background-color:{{shape_colors.2}};"></span>
+					</div> 
+					<button type="button" id="delete-button3" class="delete-button">
+						<img title="Delete from map" src="images/erase-polygonbutton.png"></button>
+				</div>          
+				<!--    END CUSTOM POLYGON 3 POPOVER           -->
+
+				 <select id="ftSubChoice3" name="ftSubChoice3" class ="ftSubChoice" style="width:35%">
+					    <option value="" >loading</option>
+				</select>
+				 <img class="minus" id="mi_ft3" src="media/img/MinusButton.jpg" height="15" title="Remove this region">
+				 {% if ft4display == "none" %}
+				    	<img class="add" id="pl_ft4" src="media/img/PlusButton.png" height="15" title="Add another region">
+				 {%else%}
+				    	<img class="add" id="pl_ft4" src="media/img/PlusButton.png" height="15" style="display:none" title="Add another region">
+				 {%endif%}
+                 <div class="error" id="form_error_ftSubChoice3" style="display:none"></div>
+			</div>
+		</div>
+	</div>
+	<!--  ********************* -->
+	<!--     CUSTOM 4           -->
+	<!--  ********************* -->
+	<div id="fusiontable4" class="fusiontable" style="display:{{ft4display}}">
+		<div class="row">
+			    <!--hidden input to keep track of which layers are displayed-->
+			    <input type="hidden" id="ft4display" name="ft4display" value="{{ft4display}}"/>
+			    <input type="hidden" id="ft4check" name="ft4check" value="{{ft4check}}"/>
+			    <input type="text" id="ft4columnName" name="ft4columnName" value="{{ft4columnName}}"/>
+			    <input type="text" id="ft4" class="ft" name="ft4" value="{{ft4}}"/>
+			    <input type="hidden" id="ft4altname" name="ft4altname" value="{{ft4altname}}"/>
+                <input type="hidden" id="SubChoice4" name="SubChoice4" value="{{ftSubChoice4}}"/>
+			<div class="col-md-12">
+			    	<input title="View layer on map" type="checkbox" name="ft" class="ftCheck" value="4" id="checkft4" {{ft4check}} />
+				 <select id="ftChoice4" name="ftChoice4" class="ftChoice" style="width:35%">
+					{% for x,y in formFusionTableChoices %}
+					    <option value="{{ x }}" {% if x==ftChoice4 %} selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</select>
+		 		<!--     RELOAD           -->
+				<div class="reload" id="reload4" {% if ftChoice4=="polygon"%} 
+                    style="display:none"{% else %}style="display:inline"{%endif%}>
+                    <a href="#" onclick="reloadFusionTableFeatures(4);">
+                    <img title="Show all options on map" src="images/reload.png" height="25px" ></a>
+                </div>
+                <!--     CUSTOM FT 4 POPOVER           -->
+				<div class="ftcustom4" {% if ftChoice4=='custom'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					{% with ftid="4" %}
+						{% include "includes/fusiontable_popover_template.html"%}
+					{% endwith %}
+				</div>
+				<!--    END CUSTOM FT 4 POPOVER           -->
+				<!--     CUSTOM POLYGON 4 POPOVER           -->
+					<div class="polygon4" {% if ftChoice4=='polygon'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					<input type="hidden" id="polygon4" class="polygonString" name="polygon4" value="{{polygon4}}"/>
+					{% with ftid="4" %}
+						{% include "includes/polygon_popover_template.html"%}
+					{% endwith %}
+					<div id="color-palette" style="display:inline">
+						<span class="color-button" id="color-button4"
+						    style="border: 2px solid black; background-color:{{shape_colors.3}};"></span>
+					</div> 
+					<button type="button" id="delete-button4" class="delete-button">
+						<img title="Delete from map" src="images/erase-polygonbutton.png"></button>
+				</div>
+				<!--    END CUSTOM POLYGON 4 POPOVER           -->
+
+				 <select id="ftSubChoice4" name="ftSubChoice4" class ="ftSubChoice" style="width:35%">
+					    <option value="" >loading</option>
+				</select>
+				 <img class="minus" id="mi_ft4" src="media/img/MinusButton.jpg" height="15" title="Remove this region">
+				 {% if ft5display == "none" %}
+				 	<img class="add" id="pl_ft5" src="media/img/PlusButton.png" height="15" title="Add another region">
+				 {%else%}
+				 	<img class="add" id="pl_ft5" src="media/img/PlusButton.png" height="15" style="display:none" title="Add another region">
+				 {%endif%}
+                 <div class="error" id="form_error_ftSubChoice4" style="display:none"></div>
+			</div>
+		</div>
+	</div>
+	<!--  ********************* -->
+	<!--     CUSTOM 5           -->
+	<!--  ********************* -->
+	<div id="fusiontable5" class="fusiontable" style="display:{{ft5display}}">
+		<div class="row">
+			    <input type="hidden" id="ft5display" name="ft5display" value="{{ft5display}}"/>
+			    <input type="hidden" id="ft5check" name="ft5check" value="{{ft5check}}"/>
+			    <input type="hidden" id="ft5columnName" name="ft5columnName" value="{{ft5columnName}}"/>
+			    <input type="text" id="ft5" class="ft" name="ft5" value="{{ft5}}"/>
+			    <input type="text" id="ft5altname" name="ft5altname" value="{{ft5altname}}" size="10"/>
+                <input type="hidden" id="SubChoice5" name="SubChoice5" value="{{ftSubChoice5}}"/>
+			<div class="col-md-12">
+			    	<input title="View layer on map" type="checkbox" name="ft" class="ftCheck" value="5" id="checkft5" {{ft5check}} />
+				 <select id="ftChoice5" name="ftChoice5" class="ftChoice" style="width:35%">
+					{% for x,y in formFusionTableChoices %}
+					    <option value="{{ x }}" {% if x==ftChoice5 %} selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</select>
+ 				<!--     RELOAD           -->
+				<div class="reload" id="reload5" {% if ftChoice5=="polygon"%} 
+                    style="display:none"{% else %}style="display:inline"{%endif%}>
+                    <a href="#" onclick="reloadFusionTableFeatures(5);">
+                    <img title="Show all options on map" src="images/reload.png" height="25px" ></a>
+                </div>
+                <!--     CUSTOM FT 5 POPOVER           -->
+				<div class="ftcustom5" {% if ftChoice5=='custom'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					{% with ftid="5" %}
+						{% include "includes/fusiontable_popover_template.html"%}
+					{% endwith %}
+				</div>
+				<!--    END CUSTOM FT 5 POPOVER           -->
+				<!--     CUSTOM POLYGON 5 POPOVER           -->
+					<div class="polygon5" {% if ftChoice5=='polygon'%}style="display:inline"{% else %} style="display:none"{% endif %}>
+					<input type="hidden" id="polygon5" class="polygonString" name="polygon4" value="{{polygon4}}"/>
+					{% with ftid="5" %}
+						{% include "includes/polygon_popover_template.html"%}
+					{% endwith %}
+					<div id="color-palette" style="display:inline">
+						<span class="color-button" id="color-button5"
+						    style="border: 2px solid black; background-color:{{shape_colors.4}};"></span>
+					</div>
+					<button type="button" id="delete-button5" class="delete-button">
+						<img title="Delete from map" src="images/erase-polygonbutton.png"></button>
+				</div>
+				<!--    END CUSTOM POLYGON 5 POPOVER           -->
+
+				 <select id="ftSubChoice5" name="ftSubChoice5" class ="ftSubChoice" style="width:35%">
+					    <option value="" >loading</option>
+				</select>
+			    	<img class="minus" id="mi_ft5" src="media/img/MinusButton.jpg" height="15" title="Remove this region">
+                <div class="error" id="form_error_ftSubChoice5" style="display:none"></div>
+			</div>
+		</div>
+	</div>
+	<!--  ********************* -->
+</div>

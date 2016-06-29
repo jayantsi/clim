@@ -1,0 +1,27 @@
+<!-- *********************** -->
+<!--          MAP REQUEST   -->
+<!-- *********************** -->
+<div class="accordion" id="accordionMAP">
+  <!--
+  <div class="accordion-group">
+        <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMAP" href="#collapseMapOptions">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div style="text-align:left"><h4><span style='color:green'> Map Layer Request</span>
+                        <span class="caret"></span></h4></div>
+                    </div>
+                </div>
+                </a>
+        </div>
+   </div>
+   -->
+   <div id="collapseMapOptions" class="accordion-body collapse {%if dispEnv=='sm' or dispEnv=='xs'%}{% else %}in{% endif %}">
+       <div class="accordion-inner">
+            <div class="panel-body">
+		{% include 'CLIMATEENGINE_EXPERT/map_options.html'%}
+	    </div>
+	</div>
+    </div>
+</div>
+

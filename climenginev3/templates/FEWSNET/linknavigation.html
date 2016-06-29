@@ -1,0 +1,53 @@
+<a id="downloadurlmodal" href="#downloadURLModal" data-toggle="modal" style="display:none"></a>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+	<ul class="nav pull-left">
+          <li class="dropdown custom-dropdown-menu">
+                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle-display">MENU</a>
+           </li>
+	</ul>
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mapoptionscollapse" style="border-color:#208AF0;">
+		    <span class="sr-only">Toggle navigation</span>
+		    <span class="icon-bar" style="background-color:#0000FF"></span>
+		    <span class="icon-bar" style="background-color:#0000FF"></span>
+		    <span class="icon-bar" style="background-color:#0000FF"></span>
+		</button>
+	
+       </div><!-- navbar-header -->
+    <div class="collapse navbar-collapse" id="mapoptionscollapse" style="background-color:#FFFFFF;text-align:center;">
+        <ul class="nav pull-left">
+	  <li class="dropdown custom-dropdown-menu">
+            <a class="dropdown-toggle" href="#" id="colormapDropdown">Colormap Options<strong class="caret"></strong></a>
+           <div class="dropdown-menu" style="min-width:330px;padding: 5px; padding-bottom: 0px;">
+		 {% include 'includes/MAP/dropdown_map_colorbar.html'%}
+	   </div>
+	 </li>
+	</ul>	
+	<ul class="nav pull-left">
+          <li class="dropdown custom-dropdown-menu">
+            <a class="dropdown-toggle" href="#">Apply Mask<strong class="caret"></strong></a>
+            <div class="dropdown-menu" style="min-width:300px;padding: 15px; padding-bottom: 0px;">
+                 {% include 'includes/MAP/dropdown_map_mask.html'%}
+            </div>
+          </li>
+        </ul>
+        <ul class="nav pull-left">
+          <li class="dropdown custom-dropdown-menu">
+            <a class="dropdown-toggle" href="#">Download<strong class="caret"></strong></a>
+           <div class="dropdown-menu" style="min-width:330px;padding: 5px; padding-bottom: 0px;">
+                 {% include 'includes/MAP/dropdown_map_download.html'%}
+           </div>
+         </li>
+        </ul>
+
+<ul class="nav navbar-right">
+        <div class="btn btn-default" onclick="window.location = window.location.href">RESET FORMS</div>
+      </ul>
+      <ul class="nav navbar-right">
+         <li><a href="#shareLinkModal" data-toggle="modal" onclick="generateBitlyShareLink(function(short_url){$('#shareLinkBitly').val(short_url); $('#shareLink2Show').val($('#shareLink').val())});return false;">Link</a></li>
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,145 @@
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+	<div class="row">
+		<div class="col-xs-9">
+				  <div class = "col-xs-12">
+					<b><span style="color:blue;font-size:medium">Download Map Layer:</span></b><br>
+				  </div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+	   <div class="panel-body panel-forms">
+		<!-- *********************** -->
+                <!--      DOWNLOAD RESOLUTION   -->
+                <!-- *********************** -->
+                <div class="row">
+                        <div class = "col-xs-12">
+                                <b>Download Resolution:</b><br>
+                                <!--<input type="hidden" id="scale" name="scale" value="{{ scale }}" style="width:50%" onfocus="this.originalvalue=this.value" /> -->
+                         <select id="scale" name="scale" class="scale" style="width:100%">
+                                <option>loading</option>
+                        </select>
+				<br><br>
+                                <!--meters-->
+                        </div>
+                </div>
+		<!-- *********************** -->
+                <!--      DOWNLOAD PROJECTION   -->
+                <!-- *********************** -->
+                <div class="row">
+                        <div class = "col-xs-12">
+                                <b>Download Projection</b>:<br>
+                                <select id="downloadProjection" class="downloadProjection" name="downloadProjection" style="width:100%">
+                                        {% for x,y in formDownloadProjection %}
+                                            <option value="{{ x }}" {% if x == downloadProjection  %} selected {% endif %}>
+                                                {{ y }}</option>
+                                        {% endfor %}
+                                </select>
+				<br><br>
+                        </div>
+                </div>
+		<!-- *********************** -->
+		<!--      DOWNLOAD FORMAT   -->
+		<!-- *********************** -->
+		<div class="row">
+			<div class = "col-xs-12">
+				<b>Download Format</b>:<br>
+				<select id="downloadMapFormat" class="downloadMapFormat" name="downloadMapFormat" style="width:100%">
+					{% for x,y in formDownloadMapFormat %}
+					    <option value="{{ x }}" {% if x == downloadMapFormat  %} selected {% endif %}>
+						{{ y }}</option>
+					{% endfor %}
+				</select>
+				<br><br>
+			</div>
+		</div>
+		<!-- *********************** -->
+		<!--      DOWNLOAD FILENAME   -->
+		<!-- *********************** -->
+		<div class="row">
+			<div class = "col-xs-12">
+				<b>Download Filename:</b><br>
+				<input id="downloadFilename" name="downloadFilename" value="{{ downloadFilename }}" onfocus="this.originalvalue=this.value" style="width:100%"/>
+			</div>
+		</div>
+	   </div><!--end panelbody-->
+	</div><!-- end panel-->
+	<div class="row">
+		<div class = "col-xs-12">
+		    <!-- *********************** -->
+		    <!--      REGION	   -->
+		    <!-- *********************** -->
+		    <b><span style="color:red">Select a Region:</span></b><br>
+		     <div class="getData">
+				<select id="downloadregion" name="downloadregion" class="downloadregion" style="width:100%">
+					{% for x,y in formDownloadRegion %}
+					    <option value="{{ x }}" {% if x == downloadregion  %} selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</select>
+		    </div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		   <div class="panel-body panel-forms" style="background:#ffffff">
+			<div class="row">
+			    <div class="col-xs-12">
+				<div class="rectangle"  {% if toolAction != 'downloadRectangleSubset'  %}style="display:none"{% endif %}>
+					Rectangle Information:<br>
+						<b>NE corner:</b><br>
+						<input id="NELat" name="NELat" value="{{ NELat }}" style="width:40%" />N,
+						<input id="NELong" name="NELong" value="{{ NELong }}" style="width:40%">E
+						<br>
+						{% if form_error.NELong %}
+							<div class="error">{{ form_error.NELong }}</div>
+						{% endif %}
+						{% if form_error.NELat %}
+							<div class="error">{{ form_error.NELat }}</div>
+						{% endif %}
+						<b>SW corner:</b><br>
+						<input id="SWLat" name="SWLat" value="{{ SWLat }}" style="width:40%"/>N,
+							<input id="SWLong" name="SWLong" value="{{ SWLong }}" style="width:40%"/>E<br>
+						{% if form_error.SWLong %}
+							<div class="error">{{ form_error.SWLong }}</div>
+						{% endif %}
+						{% if form_error.NSWLat %}
+							<div class="error">{{ form_error.SWLat }}</div>
+							{% endif %}
+				</div><!--rectangle-->
+			    </div>
+			</div>
+			<div class="row">
+				    <!-- *********************** -->
+				    <!--     CUSTOM FUSION TABLE	   -->
+				    <!-- *********************** -->
+					<div class = "col-xs-12">
+						<div class="getData">
+							<div class="fusiontabledownload" {% if toolAction!='downloadFusionTableSubset' %}style="display:none"{% endif %}>
+							<a href="#" data-toggle="popover" data-placement="right" data-container="body"  title="Fusion Tables" data-trigger="focus"
+							data-content="In order to import your own custom region, you will need to create a 'fusion table'. These can be made relatively easily by importing a KML/KMZ file for your region into Google's Fusion Tables. Here are <a href='https://support.google.com/fusiontables/answer/181717?hl=en' target='_blank'> directions</a> on how to create a fusion table. After you have created your fusion table, you should enter your fusion table ID here. If your fusion table contains many different sub-regions, you can select one of the sub regions by entering the name of the sub region below.">
+							Fusion Table Information:</a><br>
+								<b>Table ID:</b><input id="fusiontabledownload" name="fusiontabledownload" value="{{ fusiontabledownload }}" style="width:100%"  onfocus="this.originalvalue=this.value" /><br>
+								<b>Name of Sub Region</b>(optional):<input id="fusiontabledownloadname" name="fusiontabledownloadname" value="{{ fusiontabledownloadname }}" style="width:100%" onfocus="this.originalvalue=this.value" /><br>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div><!-- end panel-->
+		</div><!--end panel-->
+</div><!--end panelbody-->
+</div><!-- end panel-->
+
+<div class="row">
+        <div class = "col-xs-12">
+                <!-- *********************** -->
+                <!--   DOWNLOAD BUTTON       -->
+                <!-- *********************** -->
+                <div class="datadownload" {% if toolAction =='downloadRectangleSubset' or toolAction=='downloadFusionTableSubset' %} {% else %}style="display:none"{% endif %}>
+                        <button type="button" class="btn btn-large btn-success pull-left" style="width:100%"
+                                id="form-button-submit-download"
+                                 onclick=" document.getElementById('toolAction').value=$('#toolAction').val()"/>
+                                <!--  need a check here to only submit if a button other than no region was selected-->
+                             DOWNLOAD MAP LAYER
+                        </button>
+                </div>
+        </div>
+</div>

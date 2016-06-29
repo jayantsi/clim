@@ -1,0 +1,49 @@
+<style>
+#canvas {
+
+}
+</style>
+<!-- Commenting out of the day when we put save PDF back in-->
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+        <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+        <script type="text/javascript" src="media/js/canvas2image.js"></script>
+        <script type="text/javascript" src="http://gabelerner.github.io/canvg/canvg.js"></script>-->
+<!--
+<script>
+
+        function saveMap2PDF(){
+
+           var doc = new jsPDF('landscape', 'mm');
+
+        //svg = $('svg').parent().html();
+        //canvg(canvas, svg);
+        //canvas = document.getElementById("svg-canvas");
+        //img_PNG=Canvas2Image.saveAsPNG(canvas,true);
+        //img_PNG = canvas.toDataURL('image/png');
+        //$('#svg-canvas').html(img_PNG);
+        //$('.colorbar').html(img_PNG);
+         //  $('#colorbar').attr('src', img_PNG);
+
+           html2canvas($("#printableMap"), {
+                    useCORS: true,
+                    onrendered: function(canvas) {
+                        theCanvas = canvas;
+                        document.body.appendChild(canvas);
+
+                        var imgData = canvas.toDataURL(
+                            'image/png');
+                        doc.addImage(imgData, 'PNG', 10, 10,200,180);
+                        doc.save('sample-file.pdf');
+                        canvas.style.display="none";
+
+                        // Convert and download as image
+                        //Canvas2Image.saveAsPNG(canvas);
+                        //$("#canvas").append(canvas);
+                        // Clean up
+                        //document.body.removeChild(canvas);
+                    }
+          });
+        };
+        </script>
+-->
+

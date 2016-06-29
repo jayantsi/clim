@@ -1,0 +1,38 @@
+<!--                    -->
+<!--   ZOOM 2            -->
+<!--                    -->
+<div id="component_zoom2">
+        <button type="button" data-toggle="dropdown" class="dropdown btn btn-default" id="zoom_to_region" 
+		style="height:20px;font-size:11px;font-family:Arial, sans-serif;font-weight:bold;border-radius: 0;padding:0;">
+	Zoom to Region:
+	<span class="caret"></span> &nbsp;</button>
+
+	<ul class="dropdown-menu pull-left" style="margin-left:20px;margin-right:20px;padding:5px;border:10px;margin:10px" id="dropdown_zoom2">
+	<div class="showFEWSregions">
+	<input type="checkbox" name ="showFEWSregions" id="showFEWSregions" value="1" class="showFEWSregions" checked="checked"/>Show FEWS Countries on Map<br>
+	</div>
+	
+	  <div class="zoom2">
+
+		<!-- *********************** -->
+		<!--   COUNTRY SELECTIONS    -->
+		<!-- *********************** -->
+		<div class="panel panel-default">
+		<div class="panel-body panel-forms">
+			<div class="row">
+				<div class="col-md-12">
+					<b>Region Selection:</b><br>
+					<select id="fewsZoom2" name="fewsZoom2" class="fewsZoom2"  
+					       style="display:inline" value="{{fewsZoom2}}">
+					<optgroup>Loading</optgroup>
+					</select>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- *********************** -->
+	 </div>
+	</ul>
+
+</div>
+

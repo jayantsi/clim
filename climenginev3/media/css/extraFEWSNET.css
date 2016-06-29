@@ -1,0 +1,46 @@
+#map {
+            height:800px;
+            width:100%;
+            position: relative;
+        }
+
+/*-------------------------
+COLORBAR ON GOOGLE MAP (not used anymore)
+----------------------------*/
+/*
+ #map-colorbar {
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        position:relative ;
+        margin:5px;
+	left:10px;
+        top: 50px;
+	left: 1px;
+        background-color:white;
+        padding: 5px;
+        border: 1px solid #999;
+        width:450px;
+        height:125px;
+        z-index:1;
+        text-align:left;
+      }
+*/
+
+
+/*-------------------------
+ZOOM2 REGION ON GOOGLE MAP
+----------------------------*/
+ #component_zoom2 {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        position:relative ;
+        margin:5px;
+        top: 5px;
+        background-color: transparent;
+        padding: 5px;
+        #border: 1px solid #999;
+        width:250px;
+        height:25px;
+        z-index:1;
+        text-align:left;
+      }

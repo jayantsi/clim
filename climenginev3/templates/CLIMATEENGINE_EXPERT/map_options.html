@@ -1,0 +1,296 @@
+<div class="row">
+	<div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+	    	<!-- *********************** -->
+		<!--    MAP BUTTON               -->
+	    	<!-- *********************** -->
+		<button type="button" class="btn btn-large btn-success pull-left" style="width:100%"
+			 id="form-button-submit-map" onclick="document.getElementById('toolAction').value='getMap'">GET MAP LAYER</button><br>
+			<br>
+	</div>
+</div><!--end row-->
+
+<!-- *********************** -->
+<!--  MAP REQUEST         -->
+<!-- *********************** -->
+<!-- *********************** -->
+<!--           PRODUCT      -->
+<!-- *********************** -->
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<b><span style="color:blue;font-size:medium;">Product</span></b>
+<a data-toggle="popover" data-html="true" data-placement="right" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 400px;" rel="popover" data-original-title='Selecting a Product' data-content='
+In this section of the data request, you can select a product dataset to access from the <a href="https://explorer.earthengine.google.com/" target="_blank">Google Cloud</a>.
+<br><br>
+First, select a product type (either remote sensing or meteorological dataset). 
+Making a selection will populate the datasets you can select from. 
+<br><br>
+Second, select a dataset within the general product type. 
+Making a selection here will populate the variables you can select from.
+<br><br>
+Third, select a variable from the dataset to look at. 
+<br><br>
+Proceed to the other sections of this data request form to tailor your request. 
+<br><br>
+When you are finished with your selections, click on the green "GET MAP LAYER" button to make your request to 
+see a map summary from your selections.
+' template=''><img src="images/questionmark.gif"></a>
+<br>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	        <b>Type:</b><br>
+                <select id="productType" name="productType" class="productType" style="width:100%">
+                        {% for x,y in formProductType %}
+                            <option value="{{ x }}" {% if x == productType  %} selected {% endif %}>{{ y }}</option>
+                        {% endfor %}
+                </select>
+                <br>
+		<b>Dataset:</b><br>
+		<select id="product" name="product" class="product" style="width:100%">
+			<option>loading</option>
+		</select>
+		<br>	
+		<div class="maca" {% if product =='MACA'%}style="display:block"
+				  {%else%}style="display:none"{%endif%}>
+			<b>CMIP5 Model:</b><br>
+			<select id="model" name="model" class="model" style="width:100%">
+				<option>loading</option>
+			</select>
+			<br>
+		</div>
+		<div class="maca" {% if product =='MACA'%}style="display:block"
+				  {%else%}style="display:none"{%endif%}>
+			<b>CMIP5 Scenario:</b><br>
+			<select id="scenario" name="scenario" class="scenario" style="width:100%">
+				<option>loading</option>
+			</select>
+			<br>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<!-- *********************** -->
+	<!--           VARIABLE      -->
+	<!-- *********************** -->
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<b>Variable:</b><br>
+		<select id="variable" name="variable" class="variable" style="width:100%">
+			<option>loading</option>
+		</select><br><br>
+	</div>
+</div>
+</div><!--end panelbody-->
+</div><!-- end panel-->
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<b><span style="color:blue;font-size:medium">Processing</span></b>
+<a data-toggle="popover" data-html="true" data-placement="right" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 400px;" rel="popover" data-original-title='Selecting the Processing' data-content='
+In this section of the data request, you will select the processing to perform on the dataset selected above. 
+<br><br>
+First, select a calculation that you would like to look at. For example, you can look at raw values from the dataset, or average values from the dataset or anomalies of values from average values. 
+<br><br>
+Second, select a statistic that you would like to be performed for the dataset over the date range indicated below. For example, you can look at total precipitation or average temperatures over a time period. 
+' template=''><img src="images/questionmark.gif"></a>
+<br>
+<div class="row">
+	<!-- *********************** -->
+       <!--         CALCULATION    -->
+	<!-- *********************** -->
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<b>Calculation</b><br>
+		<select id="calculation" name="calculation" class="calculation" style="width:100%">
+			<option>loading</option>
+		</select>
+	</div>
+</div>
+<div class="row">
+	<!-- *********************** -->
+       <!--         STATISTIC     -->
+	<!-- *********************** -->
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<b>Statistic:</b><br>
+		<select id="statistic" name="statistic" style="width:100%">
+			<option>loading</option>
+		  </select>
+		 <br><br>
+	</div>
+</div>
+</div><!--end panelbody-->
+</div><!-- end panel-->
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<!-- *********************** -->
+<!--         TIME PERIOD     -->
+<!-- *********************** -->
+<b><span style="color:blue;font-size:medium">Time Period</span></b>
+<a data-toggle="popover" data-html="true" data-placement="right" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 400px;" rel="popover" data-original-title='Selecting a Time Period' data-content='
+In this section of the data request, you will select a date range from the dataset to perform the above processing upon. 
+<br><br>
+First, select a general time period you would like to look at, such as the last Winter. The date range will be automatically populated for you. 
+<br><br>
+Second, if you would like to manually enter or adjust your date range, first select "custom" and then manually enter your date range. 
+' template=''><img src="images/questionmark.gif"></a>
+
+<br>
+<div class="dataAvailability"></div>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<!-- *********************** -->
+		<!-- SEASON      -->
+		<!-- *********************** -->
+		<div class="historical"> 
+		<select id="timeperiod" name="timeperiod" class="timeperiod" style="width:100%">
+			{% for x,y in formTimePeriods %}
+			    <option value="{{ x }}" {% if x == timeperiod  %} selected {% endif %}>{{ y }}</option>
+			{% endfor %}
+		</select>
+		</div>
+		<div class="maca"> 
+			<select id="seasonFut" name="season" class="season" style="width:100%">
+			    {% for x,y in formSeasons %}
+			    <option value="{{ x }}" {% if x == season  %} selected {% endif %}>{{ y }}</option>
+			    {% endfor %}
+			</select>
+		</div>
+	</div>
+</div>
+<div class="row">
+<br>
+   <!-- *********************** -->
+   <!-- START DATE      -->
+   <!-- *********************** -->
+   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	   <div class="historical">
+	  <b>Start Date:</b><br>
+	  <input type="text" id="dateStart" value="{{ dateStart }}" name="dateStart" class="dateStart" style="width:80%" >
+        
+        {%if form_error.dateStart%}
+        <br />
+        <div class="error" id="form_error_dateStart" style="display:inline">{{form_error.dateStart}}</div>
+        {%else%}
+		<div class="error" id="form_error_dateStart" style="display:none"></div>
+		{%endif%}
+        <br>
+	  </div>
+	   <div class="maca">
+		<div class="row">
+		<div class="col-md-6">
+	  	<b>Start:</b><br>
+			<select id="monthStartFut" name="monthStartFut" class="monthStart" size="1">
+				{% for x,y in formMonth %}
+					<option value="{{ x }}" {% if x == monthStart  %} selected {% endif %}>{{ y }}</option>
+				{% endfor %}
+			</select>
+			<select id="dayStartFut" name="dayStartFut" class="dayStart" size="1">
+				{% for x,y in formDay %}
+					<option value="{{ x }}" {% if x == dayStart  %} selected {% endif %}>{{ y }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="col-md-6">
+  		<b>End:</b><br>
+                 <select id="monthEndFut" name="monthEndFut" class="monthEnd" size="1" style="width:6">
+                    {% for x,y in formMonth %}
+                        <option value="{{ x }}" {% if x == monthEnd  %} selected {% endif %}>{{ y }}</option>
+                    {% endfor %}
+                </select>
+                <select id="dayEndFut" name="dayEndFut" class="dayEnd" style="width:5">
+                    {% for x,y in formDay %}
+                        <option value="{{ x }}" {% if x == dayEnd  %} selected {% endif %}>{{ y }}</option>
+                    {% endfor %}
+                </select>
+		</div>
+		</div><!--end row-->
+	</div>
+   </div>
+</div>
+<div class="row">
+   <!-- *********************** -->
+   <!-- END DATE      -->
+   <!-- *********************** -->
+   <div class="col-md-12">
+	<div class="historical">
+	  <b>End Date:&nbsp;</b><br>
+	  <input type="text" id="dateEnd" value="{{ dateEnd }}" name="dateEnd" class="dateEnd" style="width:80%">
+	    {%if form_error.dateEnd%}
+        <br />
+        <div class="error" id="form_error_dateEnd" style="display:inline">{{form_error.dateEnd}}</div>
+        {%else%}
+        <div class="error" id="form_error_dateEnd" style="display:none"></div>
+        {%endif%}	
+        <br>
+	</div>
+   </div>
+</div>
+
+
+<!-- *********************** -->
+<!--        CLIMATOLOGY YEARS     -->
+<!-- *********************** -->
+<div class="maca">
+   <div class="row">
+        <br>
+        <div class="col-md-12">
+		<div class="futYearRange">
+                <b>Year Range for Future Average:</b><br>
+                <select id="yearStartClimFut" name="yearStartClimFut" class="yearStartClimFut" style="width:40%">
+                        <option>loading</option>
+                </select>
+                -
+                 <select id="yearEndClimFut" name="yearEndClimFut" class="yearEndClimFut" style="width:40%">
+                        <option>loading</option>
+                </select>
+		</div>
+       </div>
+    </div>
+</div>
+<div class="climatologyYears" {% if calculation == "value" %}style="display:none"{% endif %}>
+   <div class="row">
+	<br>
+	<div class="col-md-12">
+		<div class="histYearRange">
+		<b>Year Range for Historical Average:</b>
+		
+<a data-toggle="popover" data-html="true" data-placement="right" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 400px;" rel="popover" data-original-title='Choosing a Historical Year Range' data-content='
+In this section of the data request, you will select a historical year range to perform the above processing. 
+This option only appears if you have selected a calculation that involves the calculation of a historial average. 
+<br><br>
+Select the start and end years for the historical year range. 
+<br><br>
+Note that for the GRIDMET meteorological dataset, a range of 1981-2010 will access a saved historical dataset
+which will significantly speed up your calculation. If you set the year range to something other than this range, 
+the historical average will be calculated on the fly, which will significantly slow down your calculation. 
+' template=''><img src="images/questionmark.gif"></a>
+
+		<br>
+		<select id="yearStartClim" name="yearStartClim" class="yearStartClim" style="width:40%">
+			<option>loading</option>
+		</select>
+		-
+		 <select id="yearEndClim" name="yearEndClim" class="yearEndClim" style="width:40%">
+			<option>loading</option>
+		</select>
+		</div>
+        {%if form_error.yearStartClim%}
+        <br />
+        <div class="error" id="form_error_yearStartClim" style="display:inline">{{form_error.yearStartClim}}</div>
+        {%else%}
+        <div class="error" id="form_error_yearStartClim" style="display:none"></div>
+		{%endif%}
+        {%if form_error.yearEndClim%}
+        <div class="error" id="form_error_yearEndClim" style="display:inline">{{form_error.yearEndClim}}</div>
+        {%else%}
+        <div class="error" id="form_error_yearEndClim" style="display:none"></div>
+        {%endif%}
+        {%if form_error.variable%}
+           <div class="error" id="form_error_variable" style="display:inline">{{form_error.variable}}</div>
+        {%else%}
+        <div class="error" id="form_error_variable" style="display:none"></div>
+        {%endif%}  
+    </div>
+    </div>
+</div>
+
+</div><!--end panelbody-->
+</div><!-- end panel-->
+<button type="button" class="btn btn-large btn-success pull-left" style="width:100%"
+id="form-button-submit-map2" onclick="document.getElementById('toolAction').value='getMap'">GET MAP LAYER</button>

@@ -1,0 +1,13 @@
+<!-- ***************    -->
+<!-- Geocoder search box -->
+<!-- ***************    -->
+<div id="geocoder-search-box">
+   <input type="button" value="Center Map" onclick="codeAddress();$('#mapzoom').val('10');window.map.setZoom(10)" style="height:21px;font-size:11px;font-family:Arial, sans-serif;font-weight:bold;">
+
+   <input id="address" type="textbox" value="Enter Place or Location" style="height:19px;font-size:11px;font-family:Arial, sans-serif;">
+    <a href="#" data-toggle="popover" data-placement="top" data-container="body"  data-trigger="focus"
+style="height:15px;font-size:11px;font-family:Arial, sans-serif;"
+data-content="Click on button to center the map about your location. You can enter a location such as a city, address, latitude/longitude(i.e. 45,-110) and even a geographical feature. You may need to adjust the zoom separately.">
+  <img src="images/info_button.png">
+</a>
+</div>

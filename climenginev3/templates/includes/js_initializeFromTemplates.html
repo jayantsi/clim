@@ -1,0 +1,113 @@
+		/*********************************
+		*    SET FORM DISPLAY  		*
+		*********************************/
+		var productType = '{{ productType }}';
+		var productType2 = '{{ productType2TS }}';
+		var product ='{{productTS}}'
+		var product2 ='{{product2TS}}'
+ 		var variable='{{variable}}';
+		var variable2='{{variable2TS}}';
+                var calculation='{{calculation}}';
+		var calculationTS = '{{calculationTS}}'
+		var calculation2TS = '{{calculation2TS}}'
+                var statistic='{{statistic}}';
+		var statisticTS = '{{statisticTS}}'
+		var statistic2TS = '{{statistic2TS}}'
+		var timeperiod='{{timeperiod}}';
+                var timeperiod2='{{timeperiod2TS}}';
+ 		var varUnits='{{varUnits}}';
+		//var varUnitsTS='{{varUnitsTS}}';
+		//var var2UnitsTS='{{var2UnitsTS}}';
+
+		var dateStart = '{{dateStart}}'
+		var dateEnd = '{{dateEnd}}'
+		var dateStartTS='{{dateStartTS}}';
+		var dateStart2TS='{{dateStart2TS}}';
+		var dateEndTS='{{dateEndTS}}';
+		var dateEnd2TS='{{dateEnd2TS}}';
+		var yearStartClim = '{{yearStartClim}}'
+		var yearEndClim = '{{yearEndClim}}'
+		var yearStartClimFut = '{{yearStartClimFut}}';
+		var yearEndClimFut = '{{yearEndClimFut}}';
+		var yearStart = '{{yearStart}}';
+		var yearEnd = '{{yearEnd}}';
+		var yearStart2 = '{{yearStart2}}';
+		var yearEnd2 = '{{yearEnd2}}';
+
+		var model = '{{model}}';
+		var modelTS = '{{modelTS}}';
+		var model2TS = '{{model2TS}}';
+		var scenario = '{{scenario}}';
+		var scenarioTS = '{{scenarioTS}}';
+		var scenario2TS = '{{scenario2TS}}';
+
+		var colorbarsize = '{{colorbarsize}}';
+
+		$('#productType').val(productType);
+		$('#productType2TS').val(productType2);
+        changeInProductType(productType,1);
+	 	changeInProductType(productType2,2);
+		{% if notmapid and not timeSeriesTextData and form_error=={} %}
+       	        {% elif toolAction =='getTimeSeriesOverDateRange'%}
+		//	var product ='{{productTS}}'
+		{% else %}
+		//	var product ='{{product}}'
+		{% endif %}
+		//var product2=$('#product2TS').val();
+		initializeProductDisplay(product,1);
+		initializeProductDisplay(product2,2);
+		$('#product').val(product);
+		$('#productTS').val(product);
+		$('#product2TS').val(product2);
+		initializeVariableDisplay(product,variable,1,calculation);
+		$('#variable').val(variable);
+		$('#variableTS').val(variable);
+		$('#calculation').val(calculation);
+                $('#calculationTS').val(calculationTS);
+                $('#statistic').val(statistic);
+                $('#statisticTS').val(statisticTS);
+                $('#timeperiod').val(timeperiod);
+                $('#timeperiodTS').val(timeperiod);
+                $('#timeperiod2TS').val(timeperiod2);
+		$('#dateStart').val(dateStart);
+		$('#dateEnd').val(dateEnd);
+		$('#dateStartTS').val(dateStartTS);
+		$('#dateEndTS').val(dateEndTS);
+		$('#dateStart2TS').val(dateStart2TS);
+		$('#dateEnd2TS').val(dateEnd2TS);
+		setClimatologyYears(product,1);
+		setClimatologyYears(product2,2);
+
+		initializeYears(yearStart,yearEnd,1);
+		initializeYears(yearStart2,yearEnd2,2);
+
+		initializeVariableDisplay(product2,variable2,2,calculation);
+
+		$('#yearStartClim').val(yearStartClim);
+		$('#yearEndClim').val(yearEndClim);
+		//$('#varUnits').val(varUnits);
+		$('#variable2TS').val(variable2);
+		$('#statistic2TS').val(statistic2TS);
+                $('#calculation2TS').val(calculation2TS);
+		$('#model').val(model);
+		$('#modelTS').val(modelTS);
+		$('#model2TS').val(model2TS);
+		$('#scenario').val(scenario);
+		$('#scenarioTS').val(scenarioTS);
+		$('#scenario2TS').val(scenario2TS);
+		$('#yearStartClimFut').val(yearStartClimFut);
+		$('#yearEndClimFut').val(yearEndClimFut);
+
+		changeColorbarMapSize();
+		$('#colorbarsize').val(colorbarsize);
+
+		//trying to avoid putting colorbarLabel in the shareLinks
+		$("#colorbarLabelOnMap").html($('#colorbarLabel').val());
+
+		if(variable=='TrueColor'){
+                        $('.colorbarSample').css('display','none');
+                        $('.colorbarHTML').css('display','none');
+                }else{
+                        $('.colorbarSample').css('display','inline');
+                        $('.colorbarHTML').css('display','inline');
+                }

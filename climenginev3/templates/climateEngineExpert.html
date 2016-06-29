@@ -1,0 +1,112 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--<!DOCTYPE html>-->
+<html lang="en">
+	<head>
+		{% include 'CLIMATEENGINE_EXPERT/head.html'%}
+ 		<script type="text/javascript" src="collections_js/dataStore_appSpecific.js"></script>
+		{% include 'includes/basicscripts.html'%}
+    		<link href="/media/css/simple-sidebar.css" rel="stylesheet">  
+	</head>
+	{% include 'CLIMATEENGINE_EXPERT/analyticstracking.php'%}
+
+	<body>
+	<form action="/" id="form_all" method="post">
+	  <div id="wrapper">
+	   	<div id="sidebar-wrapper">
+		    <ul class="sidebar-nav">
+			 <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                                        <br><br>
+                          </div
+			<br><br><br><br>
+                           {% include 'CLIMATEENGINE_EXPERT/taboptions.html'%}
+		    </ul>
+		</div>
+	   <div id="page-content-wrapper">
+	     <div class="container-fluid">
+		<!-- *******************   -->
+		<!-- NAVIGATION             -->
+		<!-- *******************   -->
+		{% include 'CLIMATEENGINE_EXPERT/navigation.html'%}
+		<!-- *******************   -->
+		<!-- TAB WINDOW             -->
+		<!-- *******************   -->
+			 <!-- *******************   -->
+                     <!-- HIDDEN VARIABLES             -->
+                     <!-- *******************   -->
+               	    {% include 'includes/hidden_maxDates.html'%}
+                    {% include 'includes/hidden_mapProperties.html'%}
+                    {% include 'includes/TS/hidden_timeseries.html'%}
+		     <canvas id="canvas" style="display:none"></canvas>
+		     <canvas id="svg-canvas" style="display:none"></canvas>
+                    <input type="hidden" id="dispEnv" name="dispEnv" class="dispEnv" value="{{ dispEnv }}" />
+                    <input type="hidden" class="toolAction" id="toolAction" name="toolAction" value="{{ toolAction }}">
+			<div class="row">
+                                <!-- *******************   -->
+                                <!--        TAB FOR MAP/FIGURES/DATA      -->
+                                <!-- *******************   -->
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 scrollit">
+				<div class="visible-xs hidden-sm hidden-md hidden-lg">
+					<br><br>
+				</div>
+
+                                        {% include 'CLIMATEENGINE_EXPERT/displaywindow.html'%}
+					{% include 'CLIMATEENGINE_EXPERT/footer.html'%}
+                                </div>
+                        </div><!--end of row-->
+		 <!-- *******************   -->
+		<!-- MODAL WINDOWS             -->
+		 <!-- *******************   -->
+		{% include 'modal_downloadErrorMessage.html'%}
+		{% include 'modal_getValue500ErrorMessage.html'%}
+		{% include 'modal_getValue429ErrorMessage.html'%}
+		{% include 'modal_getValue404ErrorMessage.html'%}
+        {% include 'modal_jsonParseErrorMessage.html'%}
+        {% include 'modal_abortErrorMessage.html'%}
+        {% include 'modal_connectionErrorMessage.html'%}
+        {% include 'modal_uncaughtErrorMessage.html'%}
+        {% include 'modal_timeoutErrorMessage.html'%}
+        
+        {% include 'CLIMATEENGINE_EXPERT/PAGES/modal_home.html'%}
+		{% include 'CLIMATEENGINE_EXPERT/PAGES/modal_aboutdata.html'%}
+		{% include 'CLIMATEENGINE_EXPERT/PAGES/modal_aboutmetrics.html'%}
+		{% include 'CLIMATEENGINE_EXPERT/PAGES/modal_caseStudies.html'%}
+		{% include 'CLIMATEENGINE_EXPERT/PAGES/modal_references.html'%}
+		{% include 'modal_sharelink.html'%}
+		{% include 'modal_downloadURL.html'%}
+		{% include 'modal_downloadErrorMessage.html'%}
+		{% include 'CLIMATEENGINE_EXPERT/PAGES/modal_sponsors.html'%}
+		{% include 'CLIMATEENGINE_EXPERT/PAGES/modal_contact.html'%}
+
+	</div> <!--page-content-wrapper-->
+ 	  </div> <!--container-fluid-->
+	  </div><!--end of wrapper-->
+	</form>
+		<!-- *******************   -->
+		<!-- SCRIPTS             -->
+		<!-- *******************   -->
+		{% include 'CLIMATEENGINE_EXPERT/scripts.html'%}
+		<!-- *******************   -->
+		<!-- Menu Toggle Script -->
+	       <script>
+			 function toggleToDisplay(){
+				var mapCenterLongLat = $("#mapCenterLongLat").val();
+				var mapCenterLat = parseFloat(mapCenterLongLat.split(',')[1]).toFixed(4);
+				var mapCenterLong = parseFloat(mapCenterLongLat.split(',')[0]).toFixed(4);
+				var myCenter = new google.maps.LatLng(mapCenterLat, mapCenterLong);
+
+				$("#wrapper").toggleClass("toggled");
+				  setTimeout(function(){
+					$(window).resize();
+					google.maps.event.trigger(window.map, 'resize');
+					window.map.setCenter(myCenter);
+				}, 300);
+			};
+		    $("#menu-toggle-display,#menu-toggle-tab").click(function(e) {
+			e.preventDefault();
+			toggleToDisplay();
+		    });
+	    </script>
+</body>
+
+</html>

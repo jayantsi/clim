@@ -1,0 +1,111 @@
+<!-- PRODUCT -->
+<div style="display:none">
+  <div class="variable">
+                        <input type="radio" id="variable" name="variable" value="NDVI" checked>Normalized Difference Vegetation Index<br>
+	</div>
+
+	<select id="productType" name="productType" class="productType" style="width:100%">
+		{% for x,y in formProductType %}
+		    <option value="{{ x }}" {% if x == productType  %} selected {% endif %}>{{ y }}</option>
+		{% endfor %}
+	</select>
+	<select id="product" name="product" class="product" style="width:100%">
+		{% for x,y in formProduct %}
+		    <option value="{{ x }}" {% if x == product  %} selected {% endif %}>{{ y }}</option>
+		{% endfor %}
+	</select>
+	<div class="maca">
+		<select id="model" name="model" class="model" style="width:100%">
+			<option>loading</option>
+		</select>
+	</div>
+	<div class="maca"> 
+		<select id="scenario" name="scenario" class="scenario" style="width:100%">
+			<option>loading</option>
+		</select>
+	</div>
+	<select id="variable" name="variable" class="variable" style="width:100%">
+			<option>loading</option>
+	</select>
+	<select id="calculation" name="calculation" style="width:100%">
+		<option>loading</option>
+	</select>
+	<select id="statistic" name="statistic" style="width:100%">
+		<option>loading</option>
+	</select>
+ 	<select id="CHIRPSvariable" name="CHIRPSvariable" class="CHIRPSvariable" style="width:100%">
+                        <optgroup label="+CHIRPS Precipitation">
+                           {% for x,y in formCHIRPSChoicesFEWSNET %}
+                            <option value="{{ x }}" {% if x == CHIRPSvariable  %} selected {% endif %}>{{ y }}</option>
+                        {% endfor %}
+                        </optgroup>
+                        <optgroup label="+MODIS NDVI Vegetation Index">
+                           {% for x,y in formMODISChoicesFEWSNET %}
+                            <option value="{{ x }}" {% if x == CHIRPSvariable  %} selected {% endif %}>{{ y }}</option>
+                        {% endfor %}
+                        </optgroup>
+                        <optgroup label="+Landsat NDVI Vegetation Index">
+                           {% for x,y in formLandsatChoicesFEWSNET %}
+                            <option value="{{ x }}" {% if x == CHIRPSvariable  %} selected {% endif %}>{{ y }}</option>
+                        {% endfor %}
+                        </optgroup>
+            </select>
+
+                <select id="yearStartClim" name="yearStartClim" class="yearStartClim" style="width:40%">
+                        <option>loading</option>
+                </select>
+                 <select id="yearEndClim" name="yearEndClim" class="yearEndClim" style="width:40%">
+                        <option>loading</option>
+                </select>
+</div>
+
+<div class="historical" style="visibility:hidden">
+	<select id="timeperiod" name="timeperiod" class="timeperiod" style="width:100%">
+		{% for x,y in formTimePeriods %}
+		    <option value="{{ x }}" {% if x == timeperiod  %} selected {% endif %}>{{ y }}</option>
+		{% endfor %}
+	</select>
+</div>
+<div class="maca" style="visibility:hidden">
+	<select id="seasonFut" name="season" class="season" style="width:100%">
+	    {% for x,y in formSeasons %}
+	    <option value="{{ x }}" {% if x == season  %} selected {% endif %}>{{ y }}</option>
+	    {% endfor %}
+	</select>
+</div>
+<div class="maca" style="display:none">
+	<b>Start:</b><br>
+		<select id="monthStartFut" name="monthStartFut" class="monthStart" size="1">
+			{% for x,y in formMonth %}
+				<option value="{{ x }}" {% if x == monthStart  %} selected {% endif %}>{{ y }}</option>
+			{% endfor %}
+		</select>
+		<select id="dayStartFut" name="dayStartFut" class="dayStart" size="1">
+			{% for x,y in formDay %}
+				<option value="{{ x }}" {% if x == dayStart  %} selected {% endif %}>{{ y }}</option>
+			{% endfor %}
+		</select>
+	  <b>End:</b><br>
+	 <select id="monthEndFut" name="monthEndFut" class="monthEnd" size="1" style="width:6">
+	    {% for x,y in formMonth %}
+		<option value="{{ x }}" {% if x == monthEnd  %} selected {% endif %}>{{ y }}</option>
+	    {% endfor %}
+	</select>
+	<select id="dayEndFut" name="dayEndFut" class="dayEnd" style="width:5">
+	    {% for x,y in formDay %}
+		<option value="{{ x }}" {% if x == dayEnd  %} selected {% endif %}>{{ y }}</option>
+	    {% endfor %}
+	</select>
+</div>
+<div class="maca">
+                <div class="futYearRange">
+			<b>Year Range for Future Average:</b><br>
+			<select id="yearStartClimFut" name="yearStartClimFut" class="yearStartClimFut" style="width:40%">
+				<option>loading</option>
+			</select>
+			-
+			 <select id="yearEndClimFut" name="yearEndClimFut" class="yearEndClimFut" style="width:40%">
+				<option>loading</option>
+			</select>
+                </div>
+</div>

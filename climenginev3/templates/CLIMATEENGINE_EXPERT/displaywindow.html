@@ -1,0 +1,41 @@
+<ul class="nav nav-tabs nav-default" id="dataFigTab" >
+	<li>
+        <div style="text-align:right"><a href="#menu-toggle" class="btn btn-default" id="menu-toggle-display">TOGGLE<br> MENU</a></div>
+        </li>
+{%if toolAction == "getMap" or toolAction == 'downloadRectangleSubset' or toolAction=='downloadFusionTableSubset' or toolAction == 'showSingleValueOnMap'%}
+    <li class="active"><a href="#taboutmap" data-toggle="tab">Map</a></li>
+    <li><a href="#taboutfigure" data-toggle="tab" style="display:none">Figure/Data</a></li>
+{% else %}
+    <li class="active"><a href="#taboutmap" data-toggle="tab">Map</a></li>
+    <li><a href="#taboutfigure" data-toggle="tab">Figure/Data</a></li>
+{% endif %}
+</ul>
+
+<div class="tab-content my-tab">
+	  <!-- *******************   -->
+	  <!--    MAP           -->
+	  <!-- *******************   -->
+	 <div class="tab-pane {%if toolAction == "getMap" or toolAction == 'downloadRectangleSubset' or toolAction=='downloadFusionTableSubset' or toolAction == 'showSingleValueOnMap'%} active {% endif %}" id="taboutmap" style="width:100%">
+		 {% include 'CLIMATEENGINE_EXPERT/linknavigation_map.html'%}
+		 {% include 'CLIMATEENGINE_EXPERT/map.html'%}
+	  </div>
+	  <!-- *******************   -->
+	  <!--    FIGURE/DATA           -->
+	  <!-- *******************   -->
+      {% if timeSeriesGraphData %}
+      <div class="tab-pane active" id="taboutfigure">
+      {% else %}
+      <div class="tab-pane" id="taboutfigure">
+      {% endif %}
+      <!--<div class="tab-pane {% if timeSeriesGraphData %}active {% endif %}" id="taboutfigure">-->
+		 {% include 'CLIMATEENGINE_EXPERT/linknavigation_timeseries.html'%}
+		<div class="row">
+			<div class="col-lg-8">
+				{% include 'includes/TS/tabfigure.html'%}
+			 </div>
+			<div class="col-lg-4">
+		        {% include 'includes/TS/tabdata.html'%}
+			</div>
+		</div>
+	</div>
+</div>

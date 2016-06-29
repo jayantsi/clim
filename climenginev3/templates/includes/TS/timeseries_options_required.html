@@ -1,0 +1,122 @@
+<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button type="button" class="btn btn-large btn-success pull-left" style="width:100%"
+                         id="form-button-submit-timeseries" onclick="document.getElementById('toolAction').value='getTimeSeriesOverDateRange'">GET TIME SERIES</button>
+			<br><br>
+        </div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<b><span style="color:blue;font-size:medium">Time Series Calculation:</span> </b>
+<a data-toggle="popover" data-html="true" data-placement="right" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 400px;" rel="popover" data-original-title='Selecting a Type of Calculation' data-content='
+In this section of the data request, you choose which type of graphs to make and how many variables to view at once.
+<br>
+<h4>Type of Graph</h4>
+First, select a calculation from amongst: 
+<li>"Raw Data Over Time Period" if you want to look at the raw data over a specific time period</li>
+<div style="text-align:center">
+<img src="images/timeseries.png" height="100px">
+</div>
+<li>"Yearly Summaries of Values Over a Season" if you want to compare yearly values computed over a season, such as Winter or Annual averages </li>
+<div style="text-align:center">
+<img src="images/interannual.png" height="100px">
+</div>
+<li>"Raw Values Within a Year Compared to Other Years" if you want to look at the raw data over a single year and make
+ comparisons to historical averages, historical ranges</li>
+<div style="text-align:center">
+<img src="images/intraannual.png" height="100px">
+</div>
+<br>
+<h4>Number of Variables</h4>
+Second, select how many variables you would like to analyze at once, i.e. either a one-variable or two-variable analysis.<br>
+' template=''><img src="images/questionmark.gif"></a>
+<br>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		  <select id="timeSeriesCalc" name="timeSeriesCalc" class="timeSeriesCalc" style="width:100%">
+			{% for x,y in formTimeSeriesCalc %}
+			    <option value="{{ x }}" {% if x == timeSeriesCalc  %} selected {% endif %}>{{ y }}</option>
+			{% endfor %}
+		</select>
+		<br><br>
+		  <select id="variable2display" name="variable2display" class="variable2display" style="width:100%">
+			{% for x,y in formVariable2Display%}
+			    <option value="{{ x }}" {% if x == variable2display  %} selected {% endif %}>{{ y }}</option>
+			{% endfor %}
+		</select>
+	</div>
+</div>
+</div><!--end panelbody-->
+</div><!-- end panel-->
+
+<!-- ******************** -->
+<!--        REGIONS         -->
+<!-- ******************** -->
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<b><span style="color:blue;font-size:medium">Region:</span></b>
+<a data-toggle="popover" data-html="true" data-placement="right" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 400px;" rel="popover" data-original-title='Selecting a Region' data-content='
+In this section of the data request, you can select a location for your time series data extraction. 
+<br>
+<h4>Select a Region</h4>
+Here you can either look at a point location or you can look at an area-average over a specificed region. Your selection here will give you options below to select your points or region. 
+' template=''><img src="images/questionmark.gif"></a>
+<br>
+<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="domain">
+                                <select id="subDomainTypeTS" name="subDomainTypeTS" style="width:100%">
+                                        {% for x,y in formSubDomainTypeTS %}
+                                            <option value="{{ x }}" {% if x==subDomainTypeTS %} selected {% endif %}>{{ y }}</option>
+                                        {% endfor %}
+                                </select>
+                                <br><br>
+                        </div>
+        </div>
+</div>
+<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                {% include 'includes/fusiontable.html'%}
+        </div>
+</div>
+<div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                {% include 'includes/pointstable.html'%}
+        </div>
+</div>
+</div><!--end panelbody-->
+</div><!-- end panel-->
+
+
+<div class="tabbable">
+	<!-- ******************** -->
+        <!--        PRODUCT TABS       -->
+	<!-- ******************** -->
+        <ul class="nav nav-pills nav-default" id="productTab" >
+            <li id="product1tabtoggle" class="active">
+                <a href="#product1tab" data-toggle="tab">Variable 1</a>
+            </li>
+            <li id="product2tabtoggle" class="twoproducts" {% if variable2display=='none'%}style="display:none" {% endif %}>
+                <a href="#product2tab" data-toggle="tab">Variable 2</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+		<!-- ******************** -->
+                <!--   PRODUCT 1         -->
+		<!-- ******************** -->
+                <div class="tab-pane active"  id="product1tab">
+                        {% include 'includes/TS/product1.html'%}
+                </div>
+		<!-- ******************** -->
+                <!--   PRODUCT 2         -->
+		<!-- ******************** -->
+                <div class="tab-pane"  id="product2tab">
+                        {% include 'includes/TS/product2.html'%}
+                </div>
+	</div><!--end tab-content-->
+</div><!--end tabble-->
+
+<button type="button" class="btn btn-large btn-success pull-left" style="width:100%"
+                         id="form-button-submit-timeseries2" onclick="document.getElementById('toolAction').value='getTimeSeriesOverDateRange'">GET TIME SERIES</button>

@@ -1,0 +1,183 @@
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+	<!-- ******************** -->
+	<!--    TABS           -->
+	<!-- ******************** -->
+	<ul class="nav nav-pills">
+		{% for point in timeSeriesTextData  %}
+			<li {% if loop.index==1 %}class="active" {% endif %}>
+				<a href="#data{{ loop.index }}" data-toggle="tab"> 
+					{% if subDomainTypeTS=='customShapes' %}
+                        {% if polygon1 != ""  and loop.index==1 %}
+                            Polygon1: {{polygon1}}
+                        {% elif polygon2 != "" and loop.index==2 %}
+                            Polygon2: {{polygon2}}
+                        {% elif polygon3 != "" and loop.index==3 %}
+                            Polygon3: {{polygon3}}
+                        {% elif polygon4 != "" and loop.index==4 %}
+                            Polygon4: {{polygon4}}
+                        {% elif polygon5 != "" and loop.index==5 %}
+                            Polygon5: {{polygon5}}
+                        {% else %}
+					        Location: {{point.AltName}}
+                        {% endif %}
+					{% else %}Location: <br>({{point.Lat }} N,{{point.Lon}} E)<br>{{point.AltName}}
+					{% endif %}
+                    {% if timeSeriesTextData2  %}
+                        {{ variableShortName_time }}
+                    {% endif %}
+				</a>
+			</li>
+		{% endfor %}
+        {% for point in timeSeriesTextData2  %}
+            <li>
+                <a href="#data2" data-toggle="tab"> 
+                    {% if subDomainTypeTS=='customShapes' %}
+                        {% if polygon1 != "" and loop.index==1 %}
+                            Polygon1: {{polygon1}}
+                        {% elif polygon2 != "" and loop.index==2 %}
+                            Polygon2: {{polygon2}}
+                        {% elif polygon3 != ""  and loop.index==3 %}
+                            Polygon3: {{polygon3}}
+                        {% elif polygon4 != "" and loop.index==4 %}
+                            Polygon4: {{polygon4}}
+                        {% elif polygon5 != "" and loop.index==5 %}
+                            Polygon5: {{polygon5}}
+                        {% else %}
+                            Location: {{point.AltName}}
+                        {% endif %}
+                    {% else %}Location: <br>({{point.Lat }} N,{{point.Lon}} E)<br>{{point.AltName}}
+                    {% endif %}
+                    {{ variable2ShortName_time }}
+                </a>
+            </li>
+        {% endfor %}
+	</ul>
+
+	<div class="tab-content">
+    
+	<!-- ******************** -->
+	<!--    VAR 1 LOOPING OVER ALL POINTS           -->
+	<!-- ******************** -->
+	    {% for point in timeSeriesTextData  %}
+		<div class="tab-pane{% if loop.index==1 %} active{% endif %}" id="data{{ loop.index }}" style="height: 900px; overflow: scroll;background:#ffffff" >
+			#Variable: {% if timeSeriesCalc=='months' and (product =='MACA' or product =='NASANEX')%}Monthly {% elif timeSeriesCalc=='days' %}Daily {%else%} {%endif%} {{ variableShortName_time }} 
+			{% if varUnitsTS %} ({{ varUnitsTS }}){% endif %}<br>
+			<!-- ******************** -->
+			<!--    METADATA           -->
+			<!-- ******************** -->
+			#Data Source: {{ productLongName_time }} <br>
+			{% if notes_time %} #Notes:  {{ notes_time }}{% endif %}<br>
+			#Missing Value: -9999<br />
+			{% if timeSeriesCalc=='interannual' %}
+				#Statistic: {{ statisticTS }}<br />
+				#Season: {{ seasonStart }} to {{ seasonEnd }}<br /> 
+				#Year Range: {{ yearStart }} -  {{ yearEnd }}<br>
+			{% endif %}
+			{% if timeSeriesCalc == 'days' %}
+				#Time Period: {{ dateStartTS }} to  {{ dateEndTS }}<br>
+			{% endif %}
+			{% if timeSeriesCalc == 'intraannual' %}
+				#Target Year:
+						 <select id ="yearTargetData" name ="yearTargetData" class="yeartimeperiod">
+                            <option>loading</option>
+						</select></br>
+			{% endif %}
+			#Location: {% if subDomainTypeTS=='customShapes'%} Area-Average over {{ point.AltName }} Region {% else %}({{point.Lat}} N, {{point.Lon}} E)<br> {% endif %}<br />
+			#Alternative Name: {{ point.AltName }} <br /> 
+            #======================================================<br>
+			<!-- ******************** -->
+			<!--    DATA           -->
+			<!-- ******************** -->
+			{% if timeSeriesCalc=='interannual' %}
+			    #Date(yyyy), {{ variableShortName_time }}{% if varUnitsTS %} 
+			     ({{ varUnitsTS }}){% endif %}<br>
+			{% else%}
+				#Date(yyyy-mm-dd)
+				, {{ variableShortName_time }}{% if varUnitsTS %} ({{ varUnitsTS }})
+			{% endif %}
+
+			{% endif %}
+
+			{%if timeSeriesCalc != 'intraannual' %}
+				   <div class="tabData">
+					{% for date_vals in point.Data %}
+					    {% for dat in date_vals%}
+							    {{ dat }},
+					    {%endfor%}
+					    <br>
+					{% endfor %}
+				   </div>
+			{%else%}
+			    <!--Data populated dynamically in js-->
+			    <div class="tabData" id="yearData"></div>
+			{%endif%}
+			#======================================================<br>
+		</div><!--end tab-pane-->
+	     {% endfor %}<!--end looping over points-->
+
+    <!-- ******************** -->
+    <!--    VAR 2 LOOPING OVER ALL POINTS           -->
+    <!-- ******************** -->
+    
+        {% for point in timeSeriesTextData2  %}
+        <div class="tab-pane" id="data2" style="height: 900px; overflow: scroll;background:#ffffff" >
+            #Variable: {% if timeSeriesCalc=='days' %}Daily {%else%} {%endif%} {{ variable2ShortName_time }}
+            {% if var2UnitsTS %} ({{ var2UnitsTS }}){% endif %}<br>
+            <!-- ******************** -->
+            <!--    METADATA           -->
+            <!-- ******************** -->
+            #Data Source: {{ product2LongName_time }} <br>
+            {% if notes2_time %} #Notes:  {{ notes2_time }}{% endif %}<br>
+            #Missing Value: -9999<br />
+            {% if timeSeriesCalc=='interannual' %}
+                #Statistic: {{ statistic2TS }}<br />
+                #Season: {{ seasonStart2 }} to {{ seasonEnd2 }}<br />
+                #Year Range: {{ yearStart2 }} -  {{ yearEnd2 }}<br>
+            {% endif %}
+            {% if timeSeriesCalc == 'days' %}
+                #Time Period: {{ dateStart2TS }} to  {{ dateEnd2TS }}<br>
+            {% endif %}
+            {% if timeSeriesCalc == 'intraannual' %}
+                #Target Year: 
+                         <select id ="yearTarget2Data" name ="yearTarget2Data" class="yeartimeperiod">
+                            <option>loading</option>
+                        </select></br>
+            {% endif %}
+            #Location: {% if subDomainTypeTS=='customShapes' %} Area-Average over {{ point.AltName }} Region {% else %}({{point.Lat}} N, {{point.Lon}} E) {% endif %}<br />
+            #Alternative Name: {{ point.AltName }} <br />
+            #======================================================<br>
+            <!-- ******************** -->
+            <!--    DATA           -->
+            <!-- ******************** -->
+            {% if timeSeriesCalc=='interannual' %}
+                #Date(yyyy), {{ variable2ShortName_time }}{% if var2UnitsTS %}
+                 ({{ var2UnitsTS }}){% endif %}<br>
+            {% else%}
+                #Date(yyyy-mm-dd)
+                , {{ variable2ShortName_time }}{% if var2UnitsTS %} ({{ var2UnitsTS }})
+            {% endif %}
+
+            {% endif %}
+
+            {%if timeSeriesCalc != 'intraannual' %}
+                   <div class="tabData">
+                    {% for date_vals in point.Data %}
+                        {% for dat in date_vals%}
+                                {{ dat }},
+                        {%endfor%}
+                        <br>
+                    {% endfor %}
+                   </div>
+            {%else%}
+                <!--Data populated dynamically in js-->
+                <div class="tabData" id="yearData2"></div>
+            {%endif%}
+            #======================================================<br>
+        </div><!--end tab-pane-->
+         {% endfor %}<!--end looping over points-->
+
+	</div><!--end tab content -->
+	<p style="text-align:center"> Scroll down to see more data</p>
+</div><!--end panel-body-->
+</div> <!--end panel-form-->

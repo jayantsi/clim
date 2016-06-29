@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+<div class="panel-body panel-heading">
+         {% include 'PRECISIONGRAZING/mapoptions1.php'%}
+         {% include 'PRECISIONGRAZING/mapoptions2.php'%}
+	 <div class="panel panel-default"><div class="panel-body panel-body">
+		<div class="row">
+			<div class="col-sm-4">
+				<div id="titleRegion" style="display:none;text-align:center"></div>
+			</div>
+			<div class="col-sm-8">
+				<div id="colorbarRegion" style="display:none;"> 
+				    <div class="colorbarHTML">
+						<div name="form_colorbar" id="target_colorbar" style="width:100%">
+							<div style="text-align:center">
+									<div id="colorbar"><svg style="width:400;height:30;"></svg></div>
+							</div>
+						</div>
+				    </div>
+				    <div style="text-align:center" id="colorbarLabelOnMap"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class ="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div id="map-wrapper">
+					<div id="map"></div>
+				</div>
+			</div>
+		</div>
+	</div></div>
+</div></div>
+<!-- ***************    -->
+<!-- ADD MAP COMPONENTS -->
+<!-- ***************    -->
+ {% include 'includes/MAP/component_slider.html'%}
+ {% include 'includes/MAP/component_polygon_panel.html'%} 
+ {% include 'includes/MAP/component_geocoder.html'%} <!--geocoder search box-->
+ {% include 'includes/MAP/component_layers.html'%} <!--layers dropdown on map-->
+ {% include 'includes/MAP/component_getvalue.html'%} <!--get value-->
+ {% include 'FEWSNET/component_zoom2.html'%} <!--zoom2 dropdown on map-->

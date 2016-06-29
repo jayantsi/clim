@@ -1,0 +1,65 @@
+<!-- ******************** -->
+<!--  VARIABLE 2 DISPLAY         -->
+<!-- ******************** -->
+<!--        <select id="timeSeriesCalc" name="timeSeriesCalc" class="timeSeriesCalc" style="width:100%">
+<div style="display:none">
+                {% for x,y in formTimeSeriesCalc %}
+                    <option value="{{ x }}" {% if x == timeSeriesCalc  %} selected {% endif %}>{{ y }}</option>
+                {% endfor %}
+        </select>
+</div>
+-->
+<div style="display:none">
+	<select id="variable2display" name="variable2display" class="variable2display" style="width:100%">
+		{% for x,y in formVariable2Display%}
+		    <option value="{{ x }}" {% if x == variable2display  %} selected {% endif %}>{{ y }}</option>
+		{% endfor %}
+	</select>
+</div>
+
+<!-- ******************** -->
+<!--   PRODUCT 1/2         -->
+<!-- ******************** -->
+<div style="display:none">
+	{% include 'includes/TS/product1.html'%}
+</div>
+<div style="display:none">
+	{% include 'includes/TS/product2.html'%}
+</div>
+
+<!-- from includes/tabdata ...climate engine has.. fews does not-->
+<div style="display:none">
+	<select id ="yearTargetData" name ="yearTargetData" class="yeartimeperiod">
+		<option>loading</option>
+	</select>
+	<select id ="yearTarget2Data" name ="yearTarget2Data" class="yeartimeperiod">
+	       <option>loading</option>
+	</select>
+	<select id ="yearTargetForm" name ="yearTargetForm" class="yeartimeperiod">
+	    <option>loading</option>
+	</select>
+	<select id ="yearTarget2Form" name ="yearTarget2Form" class="yeartimeperiod">
+	    <option>loading</option>
+	</select>
+</div>
+
+<!-- ******************** -->
+<!--        REGIONS         -->
+<!-- ******************** -->
+<div style="display:none">
+        <a id="showFigureLink" style="display:none" href="#" onClick="$('#showFigureModal').click()">Show Figure</a>
+          <select id="timeSeriesCalc" name="timeSeriesCalc" class="timeSeriesCalc" style="width:100%">
+            {% for x,y in formTimeSeriesCalc %}
+                <!--<option value="{{ x }}" {% if x == timeSeriesCalc  %} selected {% endif %}
+                {% if subDomainTypeTS == "customShapes" and x == "intraannual"%} disabled{%endif%} >{{ y }}</option>-->
+                <option value="{{ x }}" {% if x == timeSeriesCalc  %} selected {% endif %}>{{ y }}</option>
+            {% endfor %}
+          </select>
+	 <input type="text" id="dateStart" value="{{ dateStart }}" name="dateStart" class="dateStart" style="width:40%" > to
+                            <input type="text" id="dateEnd" value="{{ dateEnd }}" name="dateEnd" class="dateEnd" style="width:40%"><br>
+  	<div class="filterRegions" style="display:none">
+		<input type="checkbox" name ="filterRegions" id="filterRegions" value="1" class="filterRegions" checked="checked"/>
+		<span style="color:#006400">Show Only Regions with filter:</span>
+		<input type="text" id="ftFilter1" name="ftFilter1" class="ftFilter" style="width:100%;height:20px" value="">
+	</div>
+</div> <!--END HIDE all time paramaters-->

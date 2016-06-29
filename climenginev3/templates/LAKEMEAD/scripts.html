@@ -1,0 +1,229 @@
+	{% include 'includes/necessary_scripts.html'%} 
+
+      /*********************************
+      //GOOGLE MAP SCRIPTS 
+      *********************************/
+	<script type="text/javascript">
+ 	     {% if mapid %}
+			var MAPID = "{{ mapid }}";
+			var TOKEN = "{{ token }}";
+			eeMapOptions=updateMapTileOptions(MAPID,TOKEN);
+			var mapType = new google.maps.ImageMapType(eeMapOptions);
+			$('#titleRegion').show();
+                	$('#colorbarRegion').show();
+	    {%else %}
+			var mapType;
+	     {% endif %}
+
+              var USDMOverLayer=null;
+	      var statemarkerLayer = null;
+	      var myZoom;	
+	      var timeoutID;
+	      var rectangle;
+	      var infomarker; 
+	      var infowindow;
+	      var fusionlayer;
+	      var userHasSeenTimeSeriesTab = false;
+
+	      var buttongetvalue=0;
+
+	      var opacity_slider = document.getElementById("slider-custom-control");
+          /*********************************
+	      *    INITIALIZE CALL
+	      *********************************/
+	      function initialize() {
+		/*********************************
+		*    LOAD INITIAL MODAL WINDOW		*
+		*********************************/
+        {%if toolAction == 'getMap' or toolAction =='downloadRectangleSubset' or toolAction=='showSingleValueOnMap' or toolAction=='downloadFusionTableSubset'%}
+            $('.nav-tabs a[href="#taboutmap"]').tab('show');
+        {% endif %}
+        // Load the modal
+
+	    {% if not mapid and not timeSeriesTextData and form_error=={} %}
+                     $("#droughthome").click();
+		{% elif toolAction =='downloadRectangleSubset' or toolAction=='downloadFusionTableSubset' %}
+                    $("#downloadurlmodal").click();
+	        {% endif %}
+		{% if toolAction=='getTimeSeriesOverDateRange' %}
+           		userHasSeenTimeSeriesTab=true;
+       		{% endif %}
+		
+		var dispEnv=findBootstrapEnvironment();
+		$('#dispEnv').val(dispEnv);
+		if(dispEnv=='xs'){ //start these accordions collapsed
+			$('#collapseMapOptions.in').collapse('toggle');
+			$('#collapseBuildMapOptions.in').collapse('toggle');
+			$('#collapseDownMapOptions.in').collapse('toggle');
+			$('#collapseTSOptions.in').collapse('toggle');
+		}
+
+		/*********************************
+		*    SET FORM DISPLAY  		*
+		*********************************/
+		{% include 'includes/js_initializeFromTemplates.html'%} 
+
+		/*********************************
+		*    LOAD INITIAL TABDATA FOR INTRAANNUAL *
+		*********************************/
+   {% if timeSeriesTextData2 %}
+            window.timeSeriesTextData2 = {{timeSeriesTextData2|safe}};
+            window.timeSeriesGraphData2 = {{timeSeriesGraphData2|safe}};
+        {% endif %}
+        {% if climoData %}
+            window.climoData = {{climoData|safe}}
+        {% endif %}
+        {% if climoData2 %}
+            window.climoData2 = {{climoData2|safe}}
+        {% endif %}
+        {% if percentileData %}
+            window.percentileData = {{percentileData|safe}}
+        {% endif %}
+        {% if percentileData2 %}
+            window.percentileData2 = {{percentileData2|safe}}
+        {% endif %}
+        {% if timeSeriesTextData %}
+            window.timeSeriesTextData = {{timeSeriesTextData|safe}};
+            window.timeSeriesGraphData = {{timeSeriesGraphData|safe}};
+            //Set all sorts of ts vars
+            $('a[href="#taboutfigure"]').addClass('active');
+            $('a[href="#taboutfigure"]').css('display','block');
+            $('#taboutfigure').addClass('active');
+            $('.nav-tabs a[href="#taboutfigure"]').tab('show');
+            setTimeSeriesTitle();
+            //makeHighcartsFigure();
+                    setHighchartParameters()
+            setTabData(1);
+            setChartLayers();
+                {% endif %}
+
+                {% if timeSeriesTextData2 %}
+            setTabData(2);
+                {% endif %}
+		/*********************************
+		*    MAP INITIALIZE/STYLE 	*
+		*********************************/
+       	geocoder = new google.maps.Geocoder();
+		
+        {% include 'includes/MAP/gmapsStyles.html'%}
+		{% include 'includes/MAP/js_map_styles.html'%}
+
+		 //needs extra refresh for google map in tab
+         $('a[href="#taboutmap"]').on('shown.bs.tab', function() {
+			 var mapCenterLongLat = $("#mapCenterLongLat").val();
+                        var mapCenterLat = parseFloat(mapCenterLongLat.split(',')[1]).toFixed(4);
+                        var mapCenterLong = parseFloat(mapCenterLongLat.split(',')[0]).toFixed(4);
+                        var myCenter = new google.maps.LatLng(mapCenterLat, mapCenterLong);
+                        google.maps.event.trigger(window.map, 'resize');
+                        window.map.setCenter(myCenter);
+        });
+		/*********************************
+                *    PROGRESS BARS            *
+                *********************************/
+                {% if mapid %}
+                        window.map.overlayMapTypes.push(mapType);
+                        {% include 'includes/progressBar.js'%}
+                {% endif %}
+
+		/*********************************
+                *    TITLE/COLORBAR              *
+                *********************************/
+                {% if mapid %}
+			        set_titleRegion();
+                    setColorbarLabel($('#variable').val(),$('#calculation').val(), $('#varUnits').val());
+                {% endif %}
+		/*********************************
+		*    ADD PANELS TO MAP            *
+		*********************************/
+		/*********************************
+		*    GET VALUE            *
+		********************************/
+			
+			//put_getvaluebuttonOnMap(window.map);
+			var getValueControl = document.getElementById('get-value-control');
+            {% if mapid %}
+                $('#get-value-control').css('display','inline');
+            {% else %}
+                $('#get-value-control').css('display','none');
+            {% endif %}
+                window.map.controls[google.maps.ControlPosition.TOP_CENTER].push(getValueControl); 
+			/*********************************
+			*    Opacity Slider            *
+			*********************************/
+            {% if mapid %}
+				put_sliderOnMap();
+				window.map.controls[google.maps.ControlPosition.RIGHT_TOP].push(opacity_slider);
+			{% endif %}
+			/*********************************
+			*    POLYGON PANEL            *
+			*********************************/
+			var polygon_panel = document.getElementById("polygon-panel");
+			window.map.controls[google.maps.ControlPosition.LEFT_TOP].push(polygon_panel);	
+
+			var deletebutton_panel = document.getElementById("delete-button");
+			window.map.controls[google.maps.ControlPosition.LEFT_TOP].push(deletebutton_panel);	
+
+			/*********************************
+			*    GEOCODER SEARCH BOX            *
+			*********************************/
+			var geocoder_searchbox = document.getElementById("geocoder-search-box");
+				window.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(geocoder_searchbox);
+				
+			/*********************************
+			*   LAYERS DROPDOWN MENU  	*
+			*********************************/
+			var layerControl = document.getElementById("google-layer-control");
+			window.map.controls[google.maps.ControlPosition.LEFT_TOP].push(layerControl);
+
+			/*********************************
+			*     MOUSEOVER EVENT -INFO BOX TO GET VALUE*
+			*********************************/
+			{% include 'includes/map_getValue.js'%}
+
+	        /*********************************/
+                /*      ADD LAYERS TO MAP        */
+                /*********************************/
+			/*********************************/
+			/*	RECTANGLE LAYERS	 */
+			/*********************************/
+			{% include 'includes/rectangle.js'%} 
+			/*********************************/
+			/*	BOUNDARY LAYERS	 */
+			/*********************************/
+			{% include 'CLIMATEENGINE_EXPERT/js_map_kmlboundaries.html'%} //kml
+			/*********************************
+			*      POINT MARKERS             *
+			*********************************/
+			{% include 'includes/point.js'%}
+			 /*********************************
+			*      POLYGON/FUSION TABLE LAYERS ON MAP*
+			*********************************/
+			{% include 'includes/fusiontable.js'%}
+
+                /*********************************
+                *     COLORBAR                   *
+                *********************************/
+                redrawSampleColorbar();
+                drawMapColorbar();
+
+		/*********************************/
+		/*   HACK TO KEEP POPOVERS NOT FLOATING ON PAGE RELOAD */
+		/*  WHEN GO TO AJAX CAN LIKELY REMOVE */
+		/*********************************/
+        $('[data-toggle="popover"]').each(function () {
+	        $(this).popover('hide');
+	    });
+		/*********************************/
+	    if(window.map){
+            window.kmlmarkerOverLayer2 = new google.maps.KmlLayer('', {
+                preserveViewport: true,
+                suppressInfoWindows: false
+            });
+            window.kmlmarkerOverLayer = new google.maps.KmlLayer('', {
+                preserveViewport: true,
+                suppressInfoWindows: false
+            });
+         }; 
+      }
+	  jQuery(document).ready(initialize);    
+	</script>

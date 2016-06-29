@@ -1,0 +1,58 @@
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" id="aboutDataModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelData" aria-hidden="true">
+ <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <!-- *******************   -->
+        <!--     HEADER             -->
+        <!-- *******************   -->
+        <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<h1 class="modal-title" id="myModalLabelData" style="color:red">About the Data</h1>
+		<p>The data available through this web tool were created using Google's geospatial tool, the <a href="http://earthengine.google.com/#intro" target="_blank">Google Earth Engine</a> using the data being stored on the Google Cloud. This data can be browsed <a href="https://earthengine.google.com/#index" target="_blank">here</a>. </p>
+
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4">
+
+                                                <ul class="nav nav-pills nav-stacked" role="tablist">
+                                                  <li class="active"><a href="#gridmet" data-toggle="tab">METDATA/gridMET</a></li>
+                                                  <li><a href="#cfsv2" data-toggle="tab">CFSR</a></li>
+                                                  <li><a href="#chirps" data-toggle="tab">CHIRPS</a></li>
+                                                  <li><a href="#landsat" data-toggle="tab">Landsat</a></li>
+                                                  <li><a href="#modis" data-toggle="tab">MODIS</a></li>
+                                                  <li><a href="#avhrr" data-toggle="tab">AVHRR</a></li>
+                                                </ul>
+		</div>
+                <div class="col-md-8">
+			<table class="table" width="100%" border="1" height="100%">
+				<tr><td>
+                                                <div class="tab-content">
+                                                        <div class="tab-pane active" id="gridmet">
+						  		{% include 'descriptions/gridmet_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="landsat">
+						  		{% include 'descriptions/landsat_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="modis">
+						  		{% include 'descriptions/modis_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="chirps">
+                                                  		{% include 'descriptions/chirps_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="cfsv2">
+                                                  		{% include 'descriptions/cfsv2_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="avhrr">
+                                                  		{% include 'descriptions/avhrr_description.html'%}
+                                                        </div>
+                                                </div>
+			</td></tr>
+			</table>
+		</div>
+           </div><!--row-->
+           <!-- *******************   -->
+       </div><!--modal-body-->
+    </div><!--modal-content-->
+  </div><!--modal-dialog-->
+</div>

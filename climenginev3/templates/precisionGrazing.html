@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+		 {% include 'PRECISIONGRAZING/head.html'%}
+                 <script type="text/javascript" src="collections_js/dataStore_appSpecific.js"></script>
+                {% include 'includes/basicscripts.html'%}
+                <script type="text/javascript" src="PRECISIONGRAZING/scripts/dataStore_PG.js"></script>
+        </head>
+
+        <body>
+        <form action="/" id="form_all" method="post">
+             <div class="container-fluid">
+                 <div class="row">
+                       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 scrollit">
+				<div class="visible-xs visible-sm hidden-md hidden-lg">
+                                        <br><br>
+                                </div>
+				  {% include 'PRECISIONGRAZING/page_setup.php'%}
+				<hr>
+				{% include 'PRECISIONGRAZING/footer.html'%}
+			</div>
+                 </div><!--end of row-->
+		 <!-- *******************   -->
+                <!-- HIDDEN VARIABLES       -->
+                 <!-- *******************   -->
+                {% include 'includes/hidden_maxDates.html'%}
+                {% include 'includes/hidden_mapProperties.html'%}
+                {% include 'includes/TS/hidden_timeseries.html'%}
+                <input type="hidden" id="dispEnv" name="dispEnv" class="dispEnv" value="{{ dispEnv }}" />
+                <input type="hidden" class="toolAction" id="toolAction" name="toolAction" value="{{ toolAction }}">
+                <div style="display:none">
+                        {% include 'includes/TS/timeseries_options_collapsible.html'%}
+                </div>
+                  {% include 'PRECISIONGRAZING/timeseries_hidden.html'%}
+                  {% include 'PRECISIONGRAZING/map_hidden.html'%}
+		<!-- *******************   -->
+		<!-- MODAL WINDOWS             -->
+		<!-- *******************   -->
+		{% include 'modal_downloadURL.html'%}
+		{% include 'modal_downloadErrorMessage.html'%}
+		{% include 'modal_getValue500ErrorMessage.html'%}
+		{% include 'modal_getValue429ErrorMessage.html'%}
+	    	{% include 'modal_getValue404ErrorMessage.html'%}
+		{% include 'modal_jsonParseErrorMessage.html'%}
+		{% include 'modal_abortErrorMessage.html'%}
+		{% include 'modal_connectionErrorMessage.html'%}
+		{% include 'modal_uncaughtErrorMessage.html'%}	
+		{% include 'modal_timeoutErrorMessage.html'%}
+		{% include 'modal_sharelink.html'%}
+		{% include 'modal_downloadURL.html'%}
+		{% include 'modal_downloadErrorMessage.html'%}
+          </div> <!--container-fluid-->
+	</form>
+		<!-- *******************   -->
+		<!-- SCRIPTS               -->
+		<!-- *******************   -->
+		{% include 'PRECISIONGRAZING/scripts.html'%}
+               <script>
+                         function toggleToDisplay(){
+                                var mapCenterLongLat = $("#mapCenterLongLat").val();
+                                var mapCenterLat = parseFloat(mapCenterLongLat.split(',')[1]).toFixed(4);
+                                var mapCenterLong = parseFloat(mapCenterLongLat.split(',')[0]).toFixed(4);
+                                var myCenter = new google.maps.LatLng(mapCenterLat, mapCenterLong);
+
+                                $("#wrapper").toggleClass("toggled");
+                                  setTimeout(function(){
+                                        $(window).resize();
+                                        google.maps.event.trigger(window.map, 'resize');
+                                        window.map.setCenter(myCenter);
+                                }, 300);
+                        };
+                    $("#menu-toggle-display,#menu-toggle-tab").click(function(e) {
+                        e.preventDefault();
+                        toggleToDisplay();
+                    });
+            </script>
+
+	</body>
+</html>

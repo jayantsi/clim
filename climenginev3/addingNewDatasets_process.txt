@@ -1,0 +1,39 @@
+Process for adding a new product collection:
+
+
+Edit collection info in javascript: 
+===================================
+*Create a new collections_js/dataStore_X.js file
+*At top of templates/includes/basicscripts.html, add 'import dataStore_.js' 
+
+*In collections_js/dataStore.js, 
+    * add product info to either METProduct or RSProduct
+    * add line to names_memcache
+    * potentially add product to names_notdefault
+    * add line to maxDates_lookup
+
+*In templates/includes/hidden_maxDates.html, add a new input box for MaxDate for product. Add the id for this to collection_dataStore.py in maxDates_lookup array
+
+*In collections_js/dataStore.js
+    *add line for names_memcache
+    *add line for maxDates_lookup
+
+Edit collection info in python: 
+===================================
+*Create a new collection_X.py file
+*In collectionMethods.py:
+    *add 'import collection_X.py' to top of file
+    *add an 'elif product==' to get_collection
+    *add an entry to get_climatology_collection() only if we have a precomputed climo
+
+*In collection_dataStore.py
+    *add line for defaults_yearClim
+    *add line for default_maxDateCalc 
+    *add line for names_memcache
+    *add line for maxDates_lookup
+    *add line for defaults_maxDates
+    *edit maxDateWorker... to obtain maxDate for new product
+
+
+*adjust units of data
+     *formatData.py... might need to adjust the units in the data at modify_units_in_timeseries()

@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<div class="row">
+	<div class="col-md-4">
+		<!-- ******************** -->
+               <!--      UNITS            -->
+		<!-- ******************** -->
+                <b>Units:</b><br>
+                <select id="unitsTS" name="unitsTS" class="units" >
+                        {% for x,y in formUnits %}
+                            <option value="{{ x }}" {% if x == unitsTS  %} selected {% endif %}>
+                                {{ y }}</option>
+                        {% endfor %}
+                </select><br />
+	</div>
+</div>
+</div><!--end panelbody-->
+</div><!-- end panel-->

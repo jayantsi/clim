@@ -1,0 +1,137 @@
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+<div class="row">
+<div class="col-xs-8">
+	<div class="row">
+		  <div class = "col-xs-12">
+			<b><span style="color:blue;font-size:medium">Colorbar:</span></b><br>
+			 <input type="hidden" id="colorbarLabel" name="colorbarLabel" value="" />
+		  </div>
+	</div>
+   <div class="colorbarSample"> <!--ie. linked with sample colorbar ..really for true color to go away-->
+   <div class="panel panel-default">
+   <div class="panel-body panel-forms">
+	<div class="row">
+		   <div class="col-xs-12">
+	
+			<b>Units:</b><br>
+			<select id="units" name="units" class="units" style="width:100%">
+				{% for x,y in formUnits %}
+				    <option value="{{ x }}" {% if x == units  %} selected {% endif %}>
+					{{ y }}</option>
+				{% endfor %}
+			</select>
+		   </div>
+	</div>
+    </div></div>
+    </div>
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+	<div class="row">
+		   <div class="col-xs-12">
+		      <div class="colorbarMinMaxChoices">
+
+			<b>Values:</b><br>
+			  Min.:&nbsp;&nbsp;<input type="text" id="minColorbar" name="minColorbar" value="{{ minColorbar }}" size="4">
+			<div class="varUnits" style="display:inline"></div>
+			   <input type="hidden" class="varUnits" id="varUnits" name="varUnits" value="{{ varUnits }}" size="4" readonly>
+			     {% if form_error.minColorbar %}
+				<br>
+				<div class="error">{{ form_error.minColorbar }}</div>
+				<br>
+			     {% endif %}
+			<br>
+			Max.: <input type="text" id="maxColorbar" name="maxColorbar" value="{{ maxColorbar }}" size="4" />
+			    {% if form_error.maxColorbar %}
+				<br>
+				<div class="error">{{ form_error.maxColorbar }}</div>
+			     {% endif %}
+			<div class="varUnits" style="display:inline"></div>
+		    </div>
+		    <div class="colorbarTicks" style="display:none">
+                                <b>Colorbar Ticks:</b>
+				<a data-toggle="popover" data-html="true" data-placement="right" data-container="body"  data-trigger="focus" tabindex="0" style="height:100px;font-size:11px;font-family:Arial, sans-serif;" style="width: 400px;" rel="popover" data-original-title='Modifying Colorbar Ticks' data-content='
+This string corresponds to the tick marks on the colorbar. As you edit, the sample colorbar here should change.<br><br>
+Note: the format for this string is between 3-11 numbers separated by commas. 
+' template=''><img src="images/questionmark.gif"></a>
+
+                                <input type="text" id="colorbarTicks" name="colorbarTicks" value="{{colorbarTicks}}" />
+                                <div class="error" id="form_error_colorbarTicks" style="display:none"></div>
+                        </div>
+		  </div>
+	</div>
+</div></div>
+<div class="colorbarSample">
+<div class="panel panel-default">
+<div class="panel-body panel-forms">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="colorbarType">
+			 <b>Colormap Type:</b>
+			 <select id="colorbarType" name="colorbarType"
+				style="width:100%">
+				{% for x,y in formColorbarType %}
+				    <option value="{{ x }}" {% if x == colorbarType  %} 
+					selected {% endif %}>{{ y }}</option>
+				{% endfor %}
+			</select>
+			</div>
+		   </div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			 <div class="colorbarSizeChoices">
+			 <b>Number of Colors:</b>
+			<select id="colorbarsize" name="colorbarsize" class="colorbarsize" style="width:100%">
+				{% for x,y in formPaletteSize %}
+				    <option value="{{ x }}" {% if x == colorbarsize  %} selected {% endif %}>{{ y }}</option>
+				{% endfor %}
+			</select>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<b>Color Palette:</b>
+			<select id="colorbarmap" name="colorbarmap" class="colorbarmap" style="width:100%">
+				<optgroup label="Divergent Maps">
+					{% for x,y in formPaletteDivMap %}
+					    <option value="{{ x }}" {% if x == colorbarmap  %} 
+						selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</optgroup>
+				<optgroup label="Sequential Maps">
+					{% for x,y in formPaletteSeqMap %}
+					    <option value="{{ x }}" {% if x == colorbarmap  %} 
+						selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</optgroup>
+				<optgroup label="Custom Maps">
+					{% for x,y in formPaletteCustomMap %}
+					    <option value="{{ x }}" {% if x == colorbarmap  %} 
+						selected {% endif %}>{{ y }}</option>
+					{% endfor %}
+				</optgroup>
+			</select>		
+	     </div>
+	</div>
+</div><!-- end white panel -->
+</div>
+</div>
+</div><!--end col-9 -->
+   <div class="col-xs-4">
+		<div class="colorbarSample">
+		<div style="text-align:center">
+			<div id="colorbar1"><svg style="width:30;height:30;"></svg></div></div>
+		</div>
+    </div>
+</div><!--end row-->
+</div>
+</div><!-- end panel -->
+
+<div class="row">
+        <div class = "col-xs-12">
+                <button type="button" class="btn btn-large btn-success pull-left" style="width:100%"
+                         id="form-button-update-map2" onclick="document.getElementById('toolAction').value='getMap'">UPDATE MAP LAYER</button><br><br>
+        </div>
+</div>

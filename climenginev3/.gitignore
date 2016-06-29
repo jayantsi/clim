@@ -1,0 +1,18 @@
+#python specific
+*.pyc
+# generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.old
+*.notused
+*.bak
+*.pem
+/OLD
+/ee
+/httplib2
+six.py
+config.py
+/oauth2client

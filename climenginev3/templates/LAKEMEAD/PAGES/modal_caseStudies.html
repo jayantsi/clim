@@ -1,0 +1,45 @@
+<!-- Modal -->
+<div class="modal fade" id="caseStudiesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelCase" aria-hidden="true">
+ <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <!-- *******************   -->
+        <!--     HEADER             -->
+        <!-- *******************   -->
+        <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<h2 class="modal-title" id="myModalLabelCase" style="color:red">Case Studies</h2>
+                <p> We can use our drought tool to look at past drought events or even current drought events in the news.</p>
+        </div>
+       	<!-- *******************   -->
+	<div class="modal-body">
+            <div class="row">
+			<div class="col-md-12">
+				<div class="accordionSTUDIES" id="accordion">
+
+					<!-- *******************   -->
+					<!--     WEATHER PHENOMENON       -->
+					<!-- *******************   -->
+					<h3><span style="color:blue">Weather</span></h3>
+					  {% include 'descriptions/CASESTUDY_WEATHER.html'%}
+
+					  <!-- *******************   -->
+					  <!--   DROUGHT        -->
+					  <!-- *******************   -->
+					  <h3><span style="color:blue">Drought</span></h3>
+					  {% include 'descriptions/CASESTUDY_DROUGHT.html'%}
+
+					<!-- *******************   -->
+					<!--   FIRE HISTORY             -->
+					<!-- *******************   -->
+					<h3><span style="color:blue">Fire History</span></h3>
+					{% include 'descriptions/CASESTUDY_FIRE.html'%}
+
+				</div><!-- end of accord -->
+			</div><!-- end of col -->
+	     </div><!--end of row-->
+        	<!-- *******************   -->
+         </div><!--modal-body-->
+       	<!-- *******************   -->
+    </div><!--modal-content-->
+  </div><!--modal-dialog-->
+</div>

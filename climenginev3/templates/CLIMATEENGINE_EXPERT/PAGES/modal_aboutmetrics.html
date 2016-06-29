@@ -1,0 +1,76 @@
+<!-- Modal -->
+<div class="modal fade" id="aboutMetricsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelMetrics" aria-hidden="true">
+ <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <!-- *******************   -->
+        <!--     HEADER             -->
+        <!-- *******************   -->
+        <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<h2 class="modal-title" id="myModalLabelMetrics" style="color:red">Monitoring Metrics</h2>
+		<p>
+		Climate, vegetation, and drought can be monitored many different ways through ground observations, gridded weather and climate data, and airborne and satellite remote sensing. Access to Google Earth Engine’s satellite image and meteorological collections allow for efficient near real-time drought monitoring through statistical analyses of surface temperature, vegetation, precipitation, snow cover, surface water, soil moisture, evapotranspiration, and simple water balances.
+		</p>
+        </div>
+	<div class="modal-body">
+            <div class="row">
+                <div class="col-md-4">
+
+                                                <ul class="nav nav-pills nav-stacked" role="tablist">
+						<li>Precipitation</li>
+                                                  <li class="active"><a href="#spi" data-toggle="tab">SPI</a></li>
+						<li>Water Balance</li>
+                                                  <li><a href="#pdsi" data-toggle="tab">PDSI</a></li>
+						<li>Evapotranspiration</li>
+                                                  <li><a href="#pet" data-toggle="tab">ETo</a></li>
+                                                  <li><a href="#eddi" data-toggle="tab">EDDI</a></li>
+						<li>Vegetation</li>
+                                                  <li><a href="#ndvi" data-toggle="tab">NDVI</a></li>
+                                                  <li><a href="#evi" data-toggle="tab">EVI</a></li>
+                                                  <li><a href="#erc" data-toggle="tab">ERC</a></li>
+						<li>Water/Snow</li>
+                                                  <li><a href="#ndwi" data-toggle="tab">NDWI</a></li>
+                                                  <li><a href="#ndsi" data-toggle="tab">NDSI</a></li>
+                                                </ul>
+                </div>
+                <div class="col-md-8">
+                        <table class="table" width="100%" border="1" height="400px">
+                                <tr><td>
+                                                <div class="tab-content">
+                                                        <div class="tab-pane active" id="spi">
+								{% include 'descriptions/METRICS_SPI_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="pdsi">
+								{% include 'descriptions/METRICS_PDSI_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="pet">
+								{% include 'descriptions/METRICS_PET_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="eddi">
+                                        			{% include 'descriptions/METRICS_EDDI_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="ndvi">
+                                        			{% include 'descriptions/METRICS_NDVI_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="evi">
+                                        			{% include 'descriptions/METRICS_EVI_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="erc">
+                                        			{% include 'descriptions/METRICS_ERC_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="ndwi">
+                                        			{% include 'descriptions/METRICS_NDWI_description.html'%}
+                                                        </div>
+                                                        <div class="tab-pane" id="ndsi">
+                                        			{% include 'descriptions/METRICS_NDSI_description.html'%}
+                                                        </div>
+                                                </div>
+                        </td></tr>
+                        </table>
+                </div>
+           </div><!--row-->
+        <!-- *******************   -->
+       </div><!--modal-body-->
+    </div><!--modal-content-->
+  </div><!--modal-dialog-->
+</div>

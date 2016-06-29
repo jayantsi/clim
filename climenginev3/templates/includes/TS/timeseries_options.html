@@ -1,0 +1,29 @@
+            <div class="panel-body">
+                {% include 'includes/TS/timeseries_options_required.html'%}
+            </div>
+<br><br>
+<div class="accordion" id="accordionBUILDTIMESERIES">                  
+   <div class="accordion-group">
+	<div class="accordion-heading">
+		<a class="accordion-toggle" data-toggle="collapse" 
+			data-parent="#accordionBUILDTIMESERIES" href="#collapseBuildTimeSeriesOptions">
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+			<div style="text-align:left"><h4><span style='color:blue'>
+				Plot Options </span>
+			<span class="caret"></span>      </h4></div>                                  
+		    </div>
+		</div>
+		</a>
+	</div><!--end of accordion-heading-->
+   </div><!-- end of accordion-group-->
+    <div id="collapseBuildTimeSeriesOptions" class="accordion-body collapse 
+	{% if timeSeriesTextData and dispEnv=='lg'%} in {% endif %}">
+       <div class="accordion-inner">
+	    <div class="panel-body">
+		{% include 'includes/TS/timeseries_options_collapsible.html'%}
+	    </div>
+	</div><!-- end of accordion-inner-->
+    </div><!-- end of accordion-body -->
+</div><!-- end of accordion-->
+

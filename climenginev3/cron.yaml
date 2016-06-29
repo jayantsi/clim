@@ -1,0 +1,9 @@
+cron:
+- description: get maxDate available for all our data products
+  url: /tasks/maxDate
+  #schedule: every 5 minutes
+  #schedule: every 60 minutes
+  schedule: every day 00:00
+  #timezone:
+  #target:
+#see https://cloud.google.com/appengine/docs/python/config/cron?hl=en

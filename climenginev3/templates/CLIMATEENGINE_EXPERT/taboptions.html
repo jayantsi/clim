@@ -1,0 +1,60 @@
+<div class="tabbable">
+    <!-- *******************   -->
+	<!--        NAVIGATION       -->
+	<!-- *******************   -->
+	<ul class="nav nav-tabs nav-default" id="dataTab" >
+	    <li {% if toolAction == "getMap" or toolAction == 'downloadRectangleSubset' or toolAction=='downloadFusionTableSubset' or toolAction == 'showSingleValueOnMap'%}class="active"{% endif %}>
+        	<a href="#tabmapoptions" data-toggle="tab">Map Layer <br>Options</a>
+        </li>
+	    <li {% if toolAction == "getTimeSeriesOverDateRange" %}class="active"{% endif %}>
+		<a href="#tabtimeseriesoptions" data-toggle="tab">Time Series<br> Options</a>
+	    </li>
+	<li>
+		<a data-toggle="popover" data-html="true" data-placement="right"         data-container="body"  data-trigger="focus" tabindex="
+        0" style="height:0px;background-color:white;border-color:white;outline:0;font-size:11px;font-family:Arial, sans-serif;"
+        style="width: 400px;" rel="popover" data-original-title='<h3>Climate Engine Requests</h3>'
+        data-content='Climate Engine allows you to look at datasets either through map layers or time series figures.<br>
+<h4>Get Started</h4>
+To get started, select a tab window from either "Map Layer Options" (for map layers) or "Time Series Options" (for time series figures). 
+<h4>Choice 1: Spatial Maps</h4>
+In the "Map Layer Options" tab, you will find options to define a request to visualize datasets spatially as a map layer on the Google map. <br>
+<div style="text-align:center">
+<img src="images/maplayer.png" height="75px">
+</div>
+<h4>Choice 2: Graphs</h4>
+In the "Time Series Options" tab, you will find options to define a request to visualize datasets in time series figures for either a point location or as an average over a spatial region.
+<div style="text-align:center">
+<img src="images/timeseries.png" height="100px">
+</div>
+<h4>Submitting Your Request</h4>
+Once you specified your options, click the big green button on the form to submit your request. 
+ <button type="button" class="btn btn-large btn-success pull-left" style="width:100%">Sample Button</button>
+<br><br>
+'
+        template=''><img src="images/Info-Button1.jpg" height="30px"></a>
+	   </li>
+	   <li>
+	<div style="text-align:right"><a href="#menu-toggle" class="btn btn-default" id="menu-toggle-tab">HIDE<br> MENU</a></div>
+	</li>
+	</ul>
+	<div class ="container-fluid">
+	    <div class="tab-content my-tab">
+		<!-- *******************   -->
+		<!--  MAP WINDOW             -->
+		<!-- *******************   -->
+		<div class="tab-pane {% if toolAction == "getMap"  or toolAction== 'downloadRectangleSubset' or toolAction=='downloadFusionTableSubset' or toolAction == 'showSingleValueOnMap'%} active {% endif %}" id="tabmapoptions" style="max-height: 950px; overflow: scroll;">
+			<br>
+			{% include 'CLIMATEENGINE_EXPERT/map_window.html'%}
+		</div>
+		<!--   *******************  -->
+		<!--    TIME SERIES WINDOW   -->
+		<!--   *******************  -->
+		<div class="tab-pane {% if toolAction=="getTimeSeriesOverDateRange"%}active{% endif %}"  id="tabtimeseriesoptions" style="max-height: 950px; overflow: scroll;">
+			<br>
+			{% include 'includes/TS/timeseries_options.html'%}
+		</div>
+		<!-- *******************   -->
+	    </div><!--end tab-content-->
+	</div><!-- end container-->                      
+</div><!--end tabbable-->
+
